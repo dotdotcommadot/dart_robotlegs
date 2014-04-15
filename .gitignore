@@ -1,0 +1,37 @@
+# Don’t commit the following files and directories created by pub and dart2js
+packages
+packages/
+*.js_
+*.js.deps
+*.js.map
+*.dart.js
+out.js
+out.js.map
+out
+web/packages
+web/packages/
+web/docs
+web/docs/
+test/packages
+test/packages/
+build
+build/
+
+*.scc
+
+# Exclude pubspec when developing library packages
+pubspec.lock
+=======
+# Don't commit the following directories created by pub.
+build/
+packages/
+
+# Or the files created by dart2js.
+*.dart.js
+*.dart.precompiled.js
+*.js_
+*.js.deps
+*.js.map
+
+# Include when developing application packages.
+pubspec.lock

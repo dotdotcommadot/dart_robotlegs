@@ -1,0 +1,8 @@
+name: robotlegs
+version: 0.0.1
+author: Hans Van den Keybus
+description: Robotlegs for Google Dart
+dependencies:
+  browser: any
+  robotlegs_di:
+    path: C:\Users\hvk\DartWorkspace\robotlegs_di
