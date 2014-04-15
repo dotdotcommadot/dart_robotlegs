@@ -2,6 +2,12 @@ part of robotlegs;
 
 abstract class ILifecycle {
 	
+  //-----------------------------------
+  //
+  // Public Properties
+  //
+  //-----------------------------------
+	
 	String get state;
 
 	dynamic get target;
@@ -15,6 +21,12 @@ abstract class ILifecycle {
 	bool get suspended;
 
 	bool get destroyed;
+	
+  //-----------------------------------
+  //
+  // Public Methods
+  //
+  //-----------------------------------
 	
 	void initialize([Function callback = null]);
 

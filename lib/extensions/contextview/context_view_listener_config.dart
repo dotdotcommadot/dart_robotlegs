@@ -22,6 +22,5 @@ class ContextViewListenerConfig implements IConfig
 	
 	void configure()
 	{
-		
 	}
 }

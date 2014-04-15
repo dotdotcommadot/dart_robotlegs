@@ -2,6 +2,12 @@ part of robotlegs;
 
 abstract class ILogger {
 	
+  //-----------------------------------
+  //
+  // Public Methods
+  //
+  //-----------------------------------
+	
 	void debug(dynamic message, [List<dynamic> params = null]);
 
 	void info(dynamic message, [List<dynamic> params = null]);

@@ -2,6 +2,12 @@ part of robotlegs;
 
 abstract class LogLevel {
 	
+  //-----------------------------------
+  //
+  // Public Static Properties
+  //
+  //-----------------------------------
+	
 	static const int FATAL = 2;
 
 	static const int ERROR = 4;

@@ -2,6 +2,12 @@ part of robotlegs;
 
 abstract class LifecycleState {
 	
+  //-----------------------------------
+  //
+  // Public Static Properties
+  //
+  //-----------------------------------
+	
 	static const String UNINITIALIZED = "uninitialized";
 
 	static const String INITIALIZING = "initializing";
