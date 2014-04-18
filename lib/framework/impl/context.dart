@@ -166,7 +166,7 @@ class Context implements IContext
 			{
 				_logger.warn("Child context {0} must be uninitialized", [child]);
 			}
-			if (child.injector.parentInjector)
+			if (child.injector.parentInjector != null)
 	    {
 	    	_logger.warn("Child context {0} must not have a parent Injector", [child]);
 	    }

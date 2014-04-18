@@ -48,6 +48,6 @@ class Logger implements ILogger
 
 	void fatal(dynamic message, [List<dynamic> params = null])
 	{
-		_target.log(_source, 8, new DateTime.now().millisecondsSinceEpoch, message, params);
+		_target.log(_source, 2, new DateTime.now().millisecondsSinceEpoch, message, params);
 	}
 }

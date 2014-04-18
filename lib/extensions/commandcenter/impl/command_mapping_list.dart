@@ -86,9 +86,10 @@ class CommandMappingList implements ICommandMappingList
 		{
 			final List<ICommandMapping> list = _mappings;
 			int length = list.length;
-			while (length--)
+			while (length > 0)
 			{
 				_deleteMapping(list[length]);
+				length--;
 			}
 			_trigger.deactivate();
 		}

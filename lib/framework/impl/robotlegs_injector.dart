@@ -2,7 +2,6 @@ part of robotlegs;
 
 class RobotlegsInjector extends Injector implements IInjector
 {
-	
   //-----------------------------------
   //
   // Public Properties
