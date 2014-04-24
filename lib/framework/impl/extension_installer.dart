@@ -37,7 +37,8 @@ class ExtensionInstaller
 	{
 		if (extension is Type)
 		{
-			(_classes[extension] != null) || install(reflectClass(extension).newInstance(new Symbol(''), []).reflectee);
+			if (_classes[extension] == null) 
+				install(reflectClass(extension).newInstance(new Symbol(''), []).reflectee);
 		}
 		else
 		{

@@ -19,7 +19,7 @@ class ConfigManager
 	
 	ILogger _logger;
 	
-	bool _initialized;
+	bool _initialized = false;
 
 	//-----------------------------------
 	//

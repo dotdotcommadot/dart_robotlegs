@@ -97,63 +97,63 @@ class Context implements IContext
 		return this;
 	}
 	
-	IContext whenSuspending( Function handler )
+	IContext whenSuspending(Function handler)
 	{
 		_lifecycle.whenSuspending(handler);
 		return this;
 	}
 
-	IContext afterSuspending( Function handler )
+	IContext afterSuspending(Function handler)
 	{
 		_lifecycle.afterSuspending(handler);
 		return this;
 	}
 
-	IContext beforeResuming( Function handler )
+	IContext beforeResuming(Function handler)
 	{
 		_lifecycle.beforeResuming(handler);
 		return this;
 	}
 
-	IContext whenResuming( Function handler )
+	IContext whenResuming(Function handler)
 	{
 		_lifecycle.whenResuming(handler);
 		return this;
 	}
 
-	IContext afterResuming( Function handler )
+	IContext afterResuming(Function handler)
 	{
 		_lifecycle.afterResuming(handler);
 		return this;
 	}
 
-	IContext beforeDestroying( Function handler )
+	IContext beforeDestroying(Function handler)
 	{
 		_lifecycle.beforeDestroying(handler);
 		return this;
 	}
 
-	IContext whenDestroying( Function handler )
+	IContext whenDestroying(Function handler)
 	{
 		_lifecycle.whenDestroying(handler);
 		return this;
 	}
 
-	IContext afterDestroying( Function handler )
+	IContext afterDestroying(Function handler)
 	{
 		_lifecycle.afterDestroying(handler);
 		return this;
 	}
 	
-	IContext install(List<IExtension> extensions)
+	IContext install(List<dynamic> extensions)
 	{
-		extensions.forEach((IExtension extension) => _extensionInstaller.install(extension));
+		extensions.forEach((dynamic extension) => _extensionInstaller.install(extension));
 		return this;
 	}
 
-	IContext configure(List<IConfig> configs)
+	IContext configure(List<dynamic> configs)
 	{
-		configs.forEach((IConfig config) => _configManager.addConfig(config));
+		configs.forEach((dynamic config) => _configManager.addConfig(config));
 		return this;
 	}
 	

@@ -58,6 +58,7 @@ class ObjectHandler
 	
 	void handle(dynamic object)
 	{
-		_matcher.matches(object) && _handler(object);
+		if (_matcher.matches(object) && _handler != null)
+			_handler(object);
 	}
 }

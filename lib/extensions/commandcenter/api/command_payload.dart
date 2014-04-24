@@ -11,10 +11,10 @@ class CommandPayload
   List _values;
   List get values => _values;
   
-  List _classes;
-  List get classes => _classes;
+  List<Type> _types;
+  List<Type> get types => _types;
   
-  int get length => (_classes != null) ? _classes.length : 0;
+  int get length => (_types != null) ? _types.length : 0;
   
   //-----------------------------------
   //
@@ -22,7 +22,7 @@ class CommandPayload
   //
   //-----------------------------------
   
-  CommandPayload(this._values,this._classes);
+  CommandPayload(this._values,this._types);
   
   //-----------------------------------
   //
@@ -30,7 +30,7 @@ class CommandPayload
   //
   //-----------------------------------
   
-  CommandPayload addPayload(dynamic payloadValue, Type payloadClass)
+  CommandPayload addPayload(dynamic payloadValue, Type payloadType)
   {
     if (_values != null)
     {
@@ -40,13 +40,13 @@ class CommandPayload
     {
     	_values = [payloadValue];
     }
-    if (_classes != null)
+    if (_types != null)
     {
-    	_classes.add(payloadClass);
+    	_types.add(payloadType);
     }
     else
     {
-    	_classes = [payloadClass];
+    	_types = [payloadType];
     }
     
     return this;
@@ -55,6 +55,6 @@ class CommandPayload
   bool hasPayload()
   {
     return (_values != null && _values.length > 0) 
-    		&& (classes != null && _classes.length == _values.length);
+    		&& (types != null && _types.length == _values.length);
   }
 }

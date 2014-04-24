@@ -54,19 +54,19 @@ abstract class IContext
 
 	IContext beforeSuspending(Function handler);
 	
-	IContext whenSuspending( Function handler );
+	IContext whenSuspending(Function handler);
 
-	IContext afterSuspending( Function handler );
+	IContext afterSuspending(Function handler);
 
-	IContext beforeResuming( Function handler );
+	IContext beforeResuming(Function handler);
 
-	IContext whenResuming( Function handler );
+	IContext whenResuming(Function handler);
 
-	IContext afterResuming( Function handler );
+	IContext afterResuming(Function handler);
 
-	IContext beforeDestroying( Function handler );
+	IContext beforeDestroying(Function handler);
 
-	IContext whenDestroying( Function handler );
+	IContext whenDestroying(Function handler);
 
-	IContext afterDestroying( Function handler );
+	IContext afterDestroying(Function handler);
 }

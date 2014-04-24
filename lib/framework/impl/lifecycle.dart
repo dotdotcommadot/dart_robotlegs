@@ -54,7 +54,7 @@ class Lifecycle implements ILifecycle
 	Lifecycle(this._target)
 	{
 		//TODO _dispatcher = target as IEventDispatcher || new EventDispatcher(this);
-		configureTransitions();
+		_configureTransitions();
 	}
 	
   //-----------------------------------
@@ -207,29 +207,29 @@ class Lifecycle implements ILifecycle
 	{
 	}*/
 	
-	void configureTransitions()
+	void _configureTransitions()
 	{
-		/*_initialize = new LifecycleTransition(LifecycleEvent.PRE_INITIALIZE, this)
-  		.fromStates(LifecycleState.UNINITIALIZED)
+		_initialize = new LifecycleTransition("", this)
+  		.fromStates([LifecycleState.UNINITIALIZED])
   		.toStates(LifecycleState.INITIALIZING, LifecycleState.ACTIVE)
-  		.withEvents(LifecycleEvent.PRE_INITIALIZE, LifecycleEvent.INITIALIZE, LifecycleEvent.POST_INITIALIZE);
+  		.withEvents("", "", "");
 
-		_suspend = new LifecycleTransition(LifecycleEvent.PRE_SUSPEND, this)
-  		.fromStates(LifecycleState.ACTIVE)
+		_suspend = new LifecycleTransition("", this)
+  		.fromStates([LifecycleState.ACTIVE])
   		.toStates(LifecycleState.SUSPENDING, LifecycleState.SUSPENDED)
-  		.withEvents(LifecycleEvent.PRE_SUSPEND, LifecycleEvent.SUSPEND, LifecycleEvent.POST_SUSPEND)
+  		.withEvents("", "", "")
   		.inReverse();
 
-		_resume = new LifecycleTransition(LifecycleEvent.PRE_RESUME, this)
-  		.fromStates(LifecycleState.SUSPENDED)
+		_resume = new LifecycleTransition("", this)
+  		.fromStates([LifecycleState.SUSPENDED])
   		.toStates(LifecycleState.RESUMING, LifecycleState.ACTIVE)
-  		.withEvents(LifecycleEvent.PRE_RESUME, LifecycleEvent.RESUME, LifecycleEvent.POST_RESUME);
+  		.withEvents("","","");
 
-		_destroy = new LifecycleTransition(LifecycleEvent.PRE_DESTROY, this)
-  		.fromStates(LifecycleState.SUSPENDED, LifecycleState.ACTIVE)
+		_destroy = new LifecycleTransition("", this)
+  		.fromStates([LifecycleState.SUSPENDED, LifecycleState.ACTIVE])
   		.toStates(LifecycleState.DESTROYING, LifecycleState.DESTROYED)
-  		.withEvents(LifecycleEvent.PRE_DESTROY, LifecycleEvent.DESTROY, LifecycleEvent.POST_DESTROY)
-  		.inReverse();*/
+  		.withEvents("","","")
+  		.inReverse();
 	}
 	
 	int flipPriority(String type, int priority)

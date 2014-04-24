@@ -61,10 +61,10 @@ class LifecycleTransition
 	}
 	
 	//TODO
-	/*withEvents()
+	LifecycleTransition withEvents(String preTransitionEvent, String transitionEvent, String postTransitionEvent)
 	{
-		
-	}*/
+		return this;
+	}
 	
 	LifecycleTransition inReverse()
 	{
@@ -110,6 +110,4 @@ class LifecycleTransition
 	{
 		// TODO
 	}
-	
-	
 }
