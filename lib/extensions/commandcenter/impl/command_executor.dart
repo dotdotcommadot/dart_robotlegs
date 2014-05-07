@@ -79,7 +79,7 @@ class CommandExecutor implements ICommandExecutor
   {
   	for(int i = payload.length; i > 0; i--)
   	{
-  		_injector.map(payload.classes[i]).toValue(payload.values[i]);
+  		_injector.map(payload.types[i]).toValue(payload.values[i]);
   	}
   }
   
@@ -87,7 +87,7 @@ class CommandExecutor implements ICommandExecutor
   {
   	for(int i = payload.length; i > 0; i--)
   	{
-  		_injector.unmap(payload.classes[i]);
+  		_injector.unmap(payload.types[i]);
   	}
   }
 }

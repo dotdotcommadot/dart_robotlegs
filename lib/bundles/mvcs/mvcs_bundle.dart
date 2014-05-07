@@ -14,6 +14,12 @@ class MVCSBundle implements IBundle {
 		
 		context.install([]);
 		
+		/*context.install(
+				ContextViewExtension,
+				ViewManagerExtension,
+				ViewProcessorMapExtension,
+				StageSyncExtension);*/
+		
 		context.configure([ContextViewListenerConfig]);
 	}
 }

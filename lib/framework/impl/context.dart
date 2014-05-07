@@ -145,15 +145,15 @@ class Context implements IContext
 		return this;
 	}
 	
-	IContext install(List<dynamic> extensions)
+	IContext install(List<Type> extensions)
 	{
-		extensions.forEach((dynamic extension) => _extensionInstaller.install(extension));
+		extensions.forEach((extension) => _extensionInstaller.install(extension));
 		return this;
 	}
 
-	IContext configure(List<dynamic> configs)
+	IContext configure(List<Type> configs)
 	{
-		configs.forEach((dynamic config) => _configManager.addConfig(config));
+		configs.forEach((config) => _configManager.addConfig(config));
 		return this;
 	}
 	

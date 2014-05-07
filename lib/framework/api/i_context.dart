@@ -20,9 +20,9 @@ abstract class IContext
 	
 	bool get destroyed;
 	
-	IContext install(List<IExtension> extensions);
+	IContext install(List<Type> extensions);
 	
-	IContext configure(List<IConfig> configs);
+	IContext configure(List<Type> configs);
 	
 	IContext addChild(IContext child);
 
