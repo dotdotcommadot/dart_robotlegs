@@ -12,13 +12,11 @@ class MVCSBundle implements IBundle {
 	{
 		context.logLevel = LogLevel.DEBUG;
 		
-		context.install([]);
-		
-		/*context.install(
-				ContextViewExtension,
+		context.install(
+				[ContextViewExtension,
 				ViewManagerExtension,
 				ViewProcessorMapExtension,
-				StageSyncExtension);*/
+				StageSyncExtension]);
 		
 		context.configure([ContextViewListenerConfig]);
 	}

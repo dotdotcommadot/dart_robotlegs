@@ -22,5 +22,6 @@ class ContextViewListenerConfig implements IConfig
 	
 	void configure()
 	{
+		viewManager.addContainer(contextView.view);
 	}
 }

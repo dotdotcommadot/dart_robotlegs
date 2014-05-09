@@ -6,6 +6,7 @@ library robotlegs;
 
 import 'dart:mirrors';
 import 'dart:async';
+import 'dart:html';
 import 'package:robotlegs_di/robotlegs_di.dart';
 
 //-----------------------------------
@@ -84,11 +85,40 @@ part 'extensions/mediatormap/api/i_mediator.dart';
 part 'extensions/localeventmap/api/i_event_map.dart';
 part 'extensions/localeventmap/api/i_event_dispatcher.dart';
 
+// matching
+
+part 'extensions/matching/i_type_filter.dart';
+part 'extensions/matching/i_type_matcher.dart';
+
 // context view
 
-part 'extensions/contextview/context_view_listener_config.dart';
 part 'extensions/contextview/context_view.dart';
+part 'extensions/contextview/context_view_extension.dart';
+part 'extensions/contextview/context_view_listener_config.dart';
+part 'extensions/contextview/stage_sync_extension.dart';
 
 // view manager
 
+part 'extensions/viewmanager/api/i_view_handler.dart';
 part 'extensions/viewmanager/api/i_view_manager.dart';
+
+part 'extensions/viewmanager/impl/container_binding.dart';
+part 'extensions/viewmanager/impl/container_registry.dart';
+part 'extensions/viewmanager/impl/view_manager.dart';
+
+part 'extensions/viewmanager/view_manager_extension.dart';
+
+// view processor map
+
+part 'extensions/viewprocessormap/api/i_view_processor_map.dart';
+
+part 'extensions/viewprocessormap/dsl/i_view_processor_mapper.dart';
+part 'extensions/viewprocessormap/dsl/i_view_processor_mapping.dart';
+part 'extensions/viewprocessormap/dsl/i_view_processor_mapping_config.dart';
+part 'extensions/viewprocessormap/dsl/i_view_processor_unmapper.dart';
+
+part 'extensions/viewprocessormap/impl/i_view_processor_factory.dart';
+part 'extensions/viewprocessormap/impl/view_processor_factory.dart';
+part 'extensions/viewprocessormap/impl/view_processor_map.dart';
+
+part 'extensions/viewprocessormap/view_processor_map_extension.dart';
