@@ -100,6 +100,7 @@ class ViewProcessorFactory implements IViewProcessorFactory
 		  + " has not been mapped in the injector, "
 		  + "and it is not possible to instantiate an interface. "
 		  + "Please map a concrete type against this interface.";
+			
 		  throw(new ViewProcessorMapError(errorMsg));
 	  }
 	  return null;
@@ -129,7 +130,8 @@ class ViewProcessorFactory implements IViewProcessorFactory
 
 	List<Type> _requiredTypesFor(ITypeFilter filter, Type type)
 	{
-		List<Type> requiredTypes = filter.allOfTypes.concat(filter.anyOfTypes);
+		List<Type> requiredTypes = filter.allOfTypes;
+		requiredTypes.addAll(filter.anyOfTypes);
 		
 		if (!requiredTypes.contains(type))
 			requiredTypes.add(type);
@@ -141,14 +143,15 @@ class ViewProcessorFactory implements IViewProcessorFactory
 	{
 		if (view is Element)
 		{
+			// TODO: implement
 			/*final Function handler = (_) {
 		    runUnprocessors(view, type, processorMappings);
 		    (view as Element).removeEventListener(Event.REMOVED_FROM_STAGE, handler);
 		    _removeHandlerFromView(view, handler);
 	    };*/
 			
-			_listenersByView[view].add(handler);
-			(view as Element).addEventListener(Event.REMOVED_FROM_STAGE, handler, false, 0, true);
+			//_listenersByView[view].add(handler);
+			//(view as Element).addEventListener(Event.REMOVED_FROM_STAGE, handler, false, 0, true);
 		}
 	}
 	

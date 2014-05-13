@@ -77,7 +77,7 @@ class ContainerRegistry
 		final ContainerBinding binding = new ContainerBinding(container);
 		_bindings.add(binding);
 		
-		binding.addEventListener(ContainerBindingEvent.BINDING_EMPTY, _onBindingEmpty);
+		//binding.addEventListener(ContainerBindingEvent.BINDING_EMPTY, _onBindingEmpty);
 		
 		binding.parent = findParentBinding(container);
 		if (binding.parent == null)
@@ -102,7 +102,7 @@ class ContainerRegistry
 			}
 		});
 		
-		dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.CONTAINER_ADD, binding.container));
+		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.CONTAINER_ADD, binding.container));
 		return binding;
 	}
 	
@@ -111,7 +111,7 @@ class ContainerRegistry
 		_bindingsByContainer.remove(binding.container);
 		_bindings.remove(binding);
 		
-		binding.removeEventListener(ContainerBindingEvent.BINDING_EMPTY, _onBindingEmpty);
+		//binding.removeEventListener(ContainerBindingEvent.BINDING_EMPTY, _onBindingEmpty);
 		
 		if (binding.parent == null)
 		{
@@ -131,19 +131,19 @@ class ContainerRegistry
 			}
 		});
 		
-		dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.CONTAINER_REMOVE, binding.container));
+		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.CONTAINER_REMOVE, binding.container));
 	}
 
 	void _addRootBinding(dynamic binding)
 	{
 		_rootBindings.add(binding);
-		dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.ROOT_CONTAINER_ADD, binding.container));
+		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.ROOT_CONTAINER_ADD, binding.container));
 	}
 	
 	void _removeRootBinding(dynamic binding)
 	{
 		_rootBindings.remove(binding);
-		dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.ROOT_CONTAINER_REMOVE, binding.container));
+		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.ROOT_CONTAINER_REMOVE, binding.container));
 	}
 
 	void _onBindingEmpty(dynamic binding)

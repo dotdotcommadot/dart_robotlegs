@@ -47,7 +47,7 @@ class ViewManager implements IViewManager
 			_registry.addContainer(container).addHandler(handler);
 		});
 		
-		dispatchEvent(new ViewManagerEvent(ViewManagerEvent.CONTAINER_ADD, container));
+		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.CONTAINER_ADD, container));
 	}
 
 	void removeContainer(Element container)
@@ -63,7 +63,7 @@ class ViewManager implements IViewManager
 			binding.removeHandler(handler);
 		});
 		
-		dispatchEvent(new ViewManagerEvent(ViewManagerEvent.CONTAINER_REMOVE, container));
+		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.CONTAINER_REMOVE, container));
 	}
 	
 	void addViewHandler(IViewHandler handler)
@@ -78,7 +78,7 @@ class ViewManager implements IViewManager
 			_registry.addContainer(container).addHandler(handler);
 		});
 		
-		dispatchEvent(new ViewManagerEvent(ViewManagerEvent.HANDLER_ADD, null, handler));
+		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.HANDLER_ADD, null, handler));
 	}
 	
 	void removeViewHandler(IViewHandler handler)
@@ -93,7 +93,7 @@ class ViewManager implements IViewManager
 			_registry.getBinding(container).removeHandler(handler);
 		});
 		
-		dispatchEvent(new ViewManagerEvent(ViewManagerEvent.HANDLER_REMOVE, null, handler));
+		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.HANDLER_REMOVE, null, handler));
 	}
 
 	void removeAllHandlers()

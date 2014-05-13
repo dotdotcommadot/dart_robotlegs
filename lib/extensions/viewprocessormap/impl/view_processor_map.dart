@@ -12,7 +12,7 @@ class ViewProcessorMap implements IViewProcessorMap, IViewHandler
 	
 	IViewProcessorViewHandler _handler;
 	
-	final IViewProcessorUnmapper NULL_MAPPER = new NullViewProccesorUnmapper();
+	final IViewProcessorUnmapper NULL_MAPPER = new NullViewProcessorUnmapper();
 	
   //-----------------------------------
   //
@@ -42,7 +42,7 @@ class ViewProcessorMap implements IViewProcessorMap, IViewHandler
 	
 	IViewProcessorMapper map(Type type)
 	{
-		ITypeMatcher matcher = new TypeMatcher().allOf(type);
+		ITypeMatcher matcher = new TypeMatcher().allOf([type]);
 		return mapMatcher(matcher);
 	}
 	
@@ -56,7 +56,7 @@ class ViewProcessorMap implements IViewProcessorMap, IViewHandler
 	
 	IViewProcessorUnmapper unmap(Type type)
 	{
-		final ITypeMatcher matcher = new TypeMatcher().allOf(type);
+		final ITypeMatcher matcher = new TypeMatcher().allOf([type]);
 		return unmapMatcher(matcher);
 	}
 	

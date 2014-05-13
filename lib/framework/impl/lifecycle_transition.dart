@@ -22,7 +22,7 @@ class LifecycleTransition
 	
 	String _finalState;
 	
-	String _preTransitionState;
+	String _preTransitionEvent;
 	
 	String _transitionEvent;
 	
@@ -81,7 +81,59 @@ class LifecycleTransition
 	
 	void enter([Function callback = null])
 	{
-		// TODO
+		if (_lifecycle.state == _finalState)
+		{
+			if (callback != null)
+				safelyCallback(callback, null, _name);
+			
+			return;
+		}
+		
+		if (_lifecycle.state == _transitionState)
+		{
+			if (callback != null)
+				_callbacks.add(callback);
+			return;
+		}
+		
+		if (_invalidTransition())
+		{
+			_reportError("Invalid transition", [callback]);
+			return;
+		}
+		
+		final String initialState = _lifecycle.state;
+		
+		if (callback != null)
+			_callbacks.add(callback);
+		
+		_setState(_transitionState);
+		
+		_dispatcher.dispatchMessage(_name, (error) {
+			
+			if (error)
+			{
+				_setState(initialState);
+				_reportError(error, _callbacks);
+				return;
+			}
+			
+			_dispatch(_preTransitionEvent);
+    	_dispatch(_transitionEvent);
+    	
+    	_setState(_finalState);
+    	
+    	final List callbacks = _callbacks;
+    	_callbacks.length = 0;
+    	
+    	callbacks.forEach( (callback) {
+    		safelyCallback(callback, null, _name);
+    	});
+    	
+    	_dispatch(_postTransitionEvent);
+			
+		}, _reverse);
+		
 	}
 	
   //-----------------------------------
@@ -98,13 +150,14 @@ class LifecycleTransition
 	
 	void _setState(String state)
 	{
-		(state != null) && _lifecycle.setCurrentState(state);
+		if (state != null)
+			_lifecycle.setCurrentState(state);
 	}
 	
-	/*void _dispatch(String type)
+	void _dispatch(String type)
 	{
-		
-	}*/
+		// TODO
+	}
 	
 	void _reportError(dynamic message, List callbacks)
 	{

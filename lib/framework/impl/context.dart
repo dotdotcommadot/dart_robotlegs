@@ -151,7 +151,7 @@ class Context implements IContext
 		return this;
 	}
 
-	IContext configure(List<Type> configs)
+	IContext configure(List configs)
 	{
 		configs.forEach((config) => _configManager.addConfig(config));
 		return this;

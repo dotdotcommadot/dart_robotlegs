@@ -51,8 +51,9 @@ class ContainerBinding
 		{
 			_handlers.remove(handler);
 			
-			if (_handlers.length == 0)
-				dispatchEvent(new ContainerBindingEvent(ContainerBindingEvent.BINDING_EMPTY));
+			// TODO
+			/*if (_handlers.length == 0)
+				dispatchEvent(new ContainerBindingEvent(ContainerBindingEvent.BINDING_EMPTY));*/
 		}
 	}
 	

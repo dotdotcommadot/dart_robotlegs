@@ -22,7 +22,7 @@ abstract class IContext
 	
 	IContext install(List<Type> extensions);
 	
-	IContext configure(List<Type> configs);
+	IContext configure(List configs);
 	
 	IContext addChild(IContext child);
 

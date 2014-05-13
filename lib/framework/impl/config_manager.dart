@@ -31,7 +31,7 @@ class ConfigManager
 	{
 		_injector = context.injector;
 		_logger = context.getLogger(this);
-		addConfigHandler(new TypeMatcher(), _handleType);
+		addConfigHandler(new ClassMatcher(), _handleType);
 		addConfigHandler(new ObjectMatcher(), _handleObject);
 		
 		// TODO: add stream-based equivalent
@@ -134,7 +134,7 @@ class ConfigManager
 	}
 }
 
-class TypeMatcher implements IMatcher
+class ClassMatcher implements IMatcher
 {
 	//-----------------------------------
 	//
