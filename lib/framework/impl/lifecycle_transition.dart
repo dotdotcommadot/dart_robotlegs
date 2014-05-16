@@ -28,7 +28,7 @@ class LifecycleTransition
 	
 	String _postTransitionEvent;
 	
-	bool _reverse;
+	bool _reverse = false;
 	
   //-----------------------------------
   //
@@ -63,6 +63,13 @@ class LifecycleTransition
 	//TODO
 	LifecycleTransition withEvents(String preTransitionEvent, String transitionEvent, String postTransitionEvent)
 	{
+		_preTransitionEvent = preTransitionEvent;
+		_transitionEvent = transitionEvent;
+		_postTransitionEvent = postTransitionEvent;
+		
+		if (_reverse)
+			_lifecycle._addReversedEventTypes([preTransitionEvent, transitionEvent, postTransitionEvent]);
+		
 		return this;
 	}
 	
@@ -109,9 +116,9 @@ class LifecycleTransition
 		
 		_setState(_transitionState);
 		
-		_dispatcher.dispatchMessage(_name, (error) {
-			
-			if (error)
+		_dispatcher.dispatchMessage(_name, (error) 
+		{
+			if (error != null)
 			{
 				_setState(initialState);
 				_reportError(error, _callbacks);
@@ -119,22 +126,21 @@ class LifecycleTransition
 			}
 			
 			_dispatch(_preTransitionEvent);
-    	_dispatch(_transitionEvent);
-    	
-    	_setState(_finalState);
-    	
-    	final List callbacks = _callbacks;
-    	_callbacks.length = 0;
-    	
-    	callbacks.forEach( (callback) {
-    		safelyCallback(callback, null, _name);
-    	});
-    	
-    	_dispatch(_postTransitionEvent);
-			
-		}, _reverse);
+	    _dispatch(_transitionEvent);
+	    
+	    _setState(_finalState);
+	    
+	    final List callbacks = _callbacks;
+	    _callbacks.length = 0;
+	    
+	    callbacks.forEach( (callback) {
+	    	safelyCallback(callback, null, _name);
+	    });
+	    
+	    _dispatch(_postTransitionEvent);
 		
-	}
+		}, _reverse);
+}
 	
   //-----------------------------------
   //
@@ -156,6 +162,7 @@ class LifecycleTransition
 	
 	void _dispatch(String type)
 	{
+		print(type);
 		// TODO
 	}
 	

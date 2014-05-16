@@ -202,33 +202,35 @@ class Lifecycle implements ILifecycle
 		//TODO: dispatchEvent(new LifecycleEvent(LifecycleEvent.STATE_CHANGE));
 	}
 	
-	//TODO
-	/*void addReversedEventTypes(List types)
+	void _addReversedEventTypes(List types)
 	{
-	}*/
+		types.forEach((type) {
+			_reversedEventTypes[type] = true;
+		});
+	}
 	
 	void _configureTransitions()
 	{
-		_initialize = new LifecycleTransition("", this)
+		_initialize = new LifecycleTransition(LifecycleEvent.PRE_INITIALIZE, this)
   		.fromStates([LifecycleState.UNINITIALIZED])
   		.toStates(LifecycleState.INITIALIZING, LifecycleState.ACTIVE)
-  		.withEvents("", "", "");
+  		.withEvents(LifecycleEvent.PRE_INITIALIZE, LifecycleEvent.INITIALIZE, LifecycleEvent.POST_INITIALIZE);
 
-		_suspend = new LifecycleTransition("", this)
+		_suspend = new LifecycleTransition(LifecycleEvent.PRE_SUSPEND, this)
   		.fromStates([LifecycleState.ACTIVE])
   		.toStates(LifecycleState.SUSPENDING, LifecycleState.SUSPENDED)
-  		.withEvents("", "", "")
+  		.withEvents(LifecycleEvent.PRE_SUSPEND, LifecycleEvent.SUSPEND, LifecycleEvent.POST_SUSPEND)
   		.inReverse();
 
-		_resume = new LifecycleTransition("", this)
+		_resume = new LifecycleTransition(LifecycleEvent.PRE_RESUME, this)
   		.fromStates([LifecycleState.SUSPENDED])
   		.toStates(LifecycleState.RESUMING, LifecycleState.ACTIVE)
-  		.withEvents("","","");
+  		.withEvents(LifecycleEvent.PRE_RESUME, LifecycleEvent.RESUME, LifecycleEvent.POST_RESUME);
 
-		_destroy = new LifecycleTransition("", this)
+		_destroy = new LifecycleTransition(LifecycleEvent.PRE_DESTROY, this)
   		.fromStates([LifecycleState.SUSPENDED, LifecycleState.ACTIVE])
   		.toStates(LifecycleState.DESTROYING, LifecycleState.DESTROYED)
-  		.withEvents("","","")
+  		.withEvents(LifecycleEvent.PRE_DESTROY, LifecycleEvent.DESTROY, LifecycleEvent.POST_DESTROY)
   		.inReverse();
 	}
 	

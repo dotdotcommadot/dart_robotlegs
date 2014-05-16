@@ -50,12 +50,12 @@ class MessageDispatcher
 		List handlers = _handlers[message];
 		if (handlers != null)
 		{
-			// TODO
 			new MessageRunner(message, handlers, callback).run();
 		}
 		else
 		{
-			// TODO (callback != null) && safelyCallBack(callback);
+			if (callback != null)
+				safelyCallback(callback);
 		}
 	}
 }
@@ -101,6 +101,6 @@ class MessageRunner
 	
 	void _next()
 	{
-		// TODO
+		print("hello world");
 	}
 }

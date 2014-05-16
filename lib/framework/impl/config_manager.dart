@@ -64,7 +64,7 @@ class ConfigManager
 	//
 	//-----------------------------------
 	
-	void _initalize(LifeCycleEvent event)
+	void _initalize(LifecycleEvent event)
 	{
 		if (!_initialized)
 		{
