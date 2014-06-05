@@ -14,16 +14,16 @@ class CommandMapping implements ICommandMapping
 	Symbol _executeMethod = new Symbol("execute");
 	Symbol get executeMethod => _executeMethod;
 	
-	List _guards;
+	List _guards = [];
 	List get guards => _guards;
 	
-	List _hooks;
+	List _hooks = [];
 	List get hooks => _hooks;
 	
-	bool _fireOnce;
+	bool _fireOnce = false;
 	bool get fireOnce => _fireOnce;
 
-	bool _payloadInjectionEnabled;
+	bool _payloadInjectionEnabled = true;
 	bool get payloadInjectionEnabled => _payloadInjectionEnabled;
 	
   //-----------------------------------
@@ -48,15 +48,13 @@ class CommandMapping implements ICommandMapping
 
 	ICommandMapping addGuards(List guards)
 	{
-		// TODO: convert to Dart
-		//_guards = _guards.concat.apply(null, guards);
+		_guards.addAll(guards);
 		return this;
 	}
 	
 	ICommandMapping addHooks(List hooks)
 	{
-		// TODO: convert to Dart
-		//_hooks = _hooks.concat.apply(null, guards);
+		_hooks.addAll(hooks);
 		return this;
 	}
 	

@@ -8,7 +8,7 @@ abstract class ICommandUnmapper
   //
   //-----------------------------------
 	
-  void fromCommand( Type commandClass );
+  void fromCommand(Type commandClass);
   
   void fromAll();
 }

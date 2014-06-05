@@ -20,7 +20,7 @@ class CommandMappingList implements ICommandMappingList
 	
 	Function _compareFunction;
 	
-	bool _sorted;
+	bool _sorted = false;
 	
   //-----------------------------------
   //
@@ -38,7 +38,8 @@ class CommandMappingList implements ICommandMappingList
 	
 	List<ICommandMapping> getList()
 	{
-		_sorted || _sortMappings();
+		if (_sorted)
+			_sortMappings();
 		return _mappings;
 	}
 	
@@ -54,6 +55,7 @@ class CommandMappingList implements ICommandMappingList
 		_sorted = false;
 		_applyProcessors(mapping);
 		final ICommandMapping oldMapping = _mappingsByCommand[mapping.commandType];
+		
 		if (oldMapping != null)
 		{
 			_overwriteMapping(oldMapping, mapping);
@@ -61,7 +63,8 @@ class CommandMappingList implements ICommandMappingList
 		else
 		{
 			_storeMapping(mapping);
-    	_mappings.length == 1 && _trigger.activate();
+    	if (_mappings.length == 1)
+    		_trigger.activate();
 		}
 	}
 	
@@ -70,14 +73,17 @@ class CommandMappingList implements ICommandMappingList
 		if (_mappingsByCommand[mapping.commandType])
 	  {
 			_deleteMapping(mapping);
-	  	_mappings.length == 0 && _trigger.deactivate();
+	  	if (_mappings.length == 0)
+	  		_trigger.deactivate();
 	  }
 	}
 	
 	void removeMappingFor(Type commandType)
 	{
 		final ICommandMapping mapping = _mappingsByCommand[commandType];
-		mapping && removeMapping(mapping);
+		
+		if (mapping != null)
+			removeMapping(mapping);
 	}
 	
 	void removeAllMappings()
@@ -105,20 +111,23 @@ class CommandMappingList implements ICommandMappingList
 	{
 		_mappingsByCommand[mapping.commandType] = mapping;
   	_mappings.add(mapping);
-  	_logger && _logger.debug('{0} mapped to {1}', [_trigger, mapping]);
+  	if (_logger != null)
+  		_logger.debug('{0} mapped to {1}', [_trigger, mapping]);
 	}
 
 	void _deleteMapping(ICommandMapping mapping)
 	{
 		_mappingsByCommand.remove(mapping.commandType);
   	_mappings.remove(mapping);
-  	_logger && _logger.debug('{0} unmapped from {1}', [_trigger, mapping]);
+  	if (_logger != null)
+  		_logger.debug('{0} unmapped from {1}', [_trigger, mapping]);
 	}
 	
 	void _overwriteMapping(ICommandMapping oldMapping, ICommandMapping newMapping)
 	{
-		_logger && _logger.warn('{0} already mapped to {1}\n' +
-	 	 'If you have overridden this mapping intentionally you can use "unmap()" ' +
+		if (_logger != null)
+			_logger.warn('{0} already mapped to {1}\n' +
+	 		'If you have overridden this mapping intentionally you can use "unmap()" ' +
 	  	'prior to your replacement mapping in order to avoid seeing this message.\n',
 	  	[_trigger, oldMapping]);
 	  _deleteMapping(oldMapping);

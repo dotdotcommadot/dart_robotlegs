@@ -40,8 +40,12 @@ class CommandExecutor implements ICommandExecutor
   	if (mapping.guards.length == 0 || guardsApprove(mapping.guards, _injector))
   	{
   		final Type commandType = mapping.commandType;
-  		mapping.fireOnce && _removeMapping && _removeMapping(mapping);
+  		
+  		if (mapping.fireOnce && _removeMapping != null)
+  			_removeMapping(mapping);
+  		
   		command = _injector.getOrCreateNewInstance(commandType);
+  		
   		if (mapping.hooks.length > 0)
   		{
   			_injector.map(commandType).toValue(command);
@@ -49,20 +53,23 @@ class CommandExecutor implements ICommandExecutor
   			_injector.unmap(commandType);
   		}
   		
-  		injectionEnabled && _unmapPayload(payload);
+  		if (injectionEnabled)
+  			_unmapPayload(payload);
   		
-  		if (command && mapping.executeMethod)
+  		if (command != null && mapping.executeMethod != null)
   		{
   			final Function executeMethod = command[mapping.executeMethod];
   			final dynamic result = Function.apply(executeMethod, payload.values);
-  			_handleResult && Function.apply(_handleResult, [result, command, mapping]);
+  			
+  			if (_handleResult != null)
+  				Function.apply(_handleResult, [result, command, mapping]);
   		}
   	}
   }
   
   void executeCommands(List<ICommandMapping> mappings, [CommandPayload payload = null])
   {
-  	int length = mappings.length;
+  	final int length = mappings.length;
   	for (int i = 0; i < length; i++)
   	{
   		executeCommand(mappings[i], payload);
@@ -77,7 +84,7 @@ class CommandExecutor implements ICommandExecutor
   
   void _mapPayload(CommandPayload payload)
   {
-  	for(int i = payload.length; i > 0; i--)
+  	for (int i = payload.length; i > 0; i--)
   	{
   		_injector.map(payload.types[i]).toValue(payload.values[i]);
   	}
@@ -85,7 +92,7 @@ class CommandExecutor implements ICommandExecutor
   
   void _unmapPayload(CommandPayload payload)
   {
-  	for(int i = payload.length; i > 0; i--)
+  	for (int i = payload.length; i > 0; i--)
   	{
   		_injector.unmap(payload.types[i]);
   	}

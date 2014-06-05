@@ -49,17 +49,15 @@ class CommandMapper implements ICommandMapper, ICommandUnmapper, ICommandConfigu
   	return this;
 	}
 	
-// TODO: what does this mean?
 	ICommandConfigurator withGuards(List guards)
 	{
-		//_mapping.addGuards.apply(null, guards);
+		_mapping.addGuards(guards);
   	return this;
 	}
 
-	// TODO: what does this mean?
 	ICommandConfigurator withHooks(List hooks)
 	{
-		//_mapping.addHooks.apply(null, hooks);
+		_mapping.addHooks(hooks);
 		return this;
 	}
 	

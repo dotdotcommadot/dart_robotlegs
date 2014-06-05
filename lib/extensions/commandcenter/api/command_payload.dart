@@ -22,7 +22,7 @@ class CommandPayload
   //
   //-----------------------------------
   
-  CommandPayload(this._values,this._types);
+  CommandPayload(this._values, this._types);
   
   //-----------------------------------
   //
@@ -54,7 +54,6 @@ class CommandPayload
 
   bool hasPayload()
   {
-    return (_values != null && _values.length > 0) 
-    		&& (types != null && _types.length == _values.length);
+    return (_values != null && _values.length > 0) && (types != null && _types.length == _values.length);
   }
 }
