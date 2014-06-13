@@ -41,6 +41,9 @@ class LogManager implements ILogTarget
 		if(level > _logLevel)
 			return;
 		
+		print( source.toString() + ' ' + level.toString() + ' ' + timestamp.toString() + ' ' + message);
+		
+		
 		_targets.forEach( (ILogTarget target)
 		{
 			target.log(source, level, timestamp, message);

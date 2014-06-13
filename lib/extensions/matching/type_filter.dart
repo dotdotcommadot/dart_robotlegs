@@ -18,7 +18,7 @@ class TypeFilter implements ITypeFilter
 	List<Type> get noneOfTypes => _noneOfTypes;
 	
 	String _descriptor;
-	String get descriptor => _descriptor == null ? _descriptor : _createDescriptor();
+	String get descriptor => _descriptor != null ? _descriptor : _createDescriptor();
 	
   //-----------------------------------
   //
@@ -110,7 +110,7 @@ class TypeFilter implements ITypeFilter
 		for (int i = 0; i < iLength; i++)
 		{
 			fqcn = types[i].toString();
-			allFCQNs[allFCQNs.length] = fqcn;
+			allFCQNs.add(fqcn);
 		}
 		
 		allFCQNs.sort((a, b) => a.compareTo(b));

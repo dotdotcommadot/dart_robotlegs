@@ -18,10 +18,10 @@ class ViewProcessorMapping implements IViewProcessorMapping, IViewProcessorMappi
 	Type _processorType;
 	Type get processorType => _processorType;
 	
-	List _guards;
+	List _guards = [];
 	List get guards => _guards;
 	
-	List _hooks;
+	List _hooks = [];
 	List get hooks => _hooks;
 	
   //-----------------------------------
@@ -30,7 +30,10 @@ class ViewProcessorMapping implements IViewProcessorMapping, IViewProcessorMappi
   //
   //-----------------------------------
 	
-	ViewProcessorMapping(this._matcher, this._processor);
+	ViewProcessorMapping(this._matcher, processor)
+	{
+		setProcessor(processor);
+	}
 	
   //-----------------------------------
   //

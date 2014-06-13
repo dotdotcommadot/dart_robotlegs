@@ -8,6 +8,7 @@ import 'dart:mirrors';
 import 'dart:async';
 import 'dart:html';
 import 'package:robotlegs_di/robotlegs_di.dart';
+import "package:dotdotcommadot_messaging/dotdotcommadot_messaging.dart";
 
 //-----------------------------------
 // Bundles
@@ -109,8 +110,10 @@ part 'extensions/viewmanager/api/i_view_manager.dart';
 
 part 'extensions/viewmanager/impl/container_binding.dart';
 part 'extensions/viewmanager/impl/container_registry.dart';
+part 'extensions/viewmanager/impl/stage_crawler.dart';
 part 'extensions/viewmanager/impl/view_manager.dart';
 
+part 'extensions/viewmanager/stage_crawler_extension.dart';
 part 'extensions/viewmanager/view_manager_extension.dart';
 
 // view processor map

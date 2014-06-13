@@ -4,5 +4,7 @@ author: Hans Van den Keybus
 description: Robotlegs for Google Dart
 dependencies:
   browser: any
+  dotdotcommadot_messaging:
+    path: C:\Users\hvk\DartWorkspace\dotdotcommadot_messaging
   robotlegs_di:
     path: C:\Users\hvk\DartWorkspace\robotlegs_di

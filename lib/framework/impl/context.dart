@@ -1,6 +1,6 @@
 part of robotlegs;
 
-class Context implements IContext
+class Context extends EventDispatcher implements IContext
 {
 	
   //-----------------------------------
@@ -77,7 +77,6 @@ class Context implements IContext
 		_lifecycle.beforeInitializing(handler);
 		return this;
 	}
-	
 	
 	IContext whenInitializing(Function handler)
 	{

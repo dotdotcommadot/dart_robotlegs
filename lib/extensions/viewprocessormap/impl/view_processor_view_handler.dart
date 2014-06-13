@@ -78,14 +78,13 @@ class ViewProcessorViewHandler implements IViewProcessorViewHandler
 		
 		if (_knownMappings[type] == null)
 		{
-			_knownMappings[type] = false;
-			
 			_mappings.forEach((mapping)
 			{
 				if (mapping.matcher.matches(view))
 				{
 					if (_knownMappings[type] == null)
 						_knownMappings[type] = [];
+					
 					_knownMappings[type].add(mapping);
 				}
 			});

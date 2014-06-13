@@ -21,10 +21,12 @@ class MessageDispatcher
 		final List messageHandlers = _handlers[message];
 		if (messageHandlers != null)
 		{
-			if (messageHandlers.indexOf(handler) == -1)
+			if (!messageHandlers.contains(handler))
 				messageHandlers.add(handler);
-			else
-				_handlers[message] = [handler];
+		}
+		else
+		{
+			_handlers[message] = [handler];
 		}
 	}
 	
@@ -101,6 +103,20 @@ class MessageRunner
 	
 	void _next()
 	{
-		print("hello world");
+		
+		Function handler = _handlers.removeLast();
+		
+		while (handler != null)
+		{
+			handler();
+			
+			if (_handlers.length > 0)
+				handler = _handlers.removeLast();
+			else
+				handler = null;
+		}
+		
+		if (_callback != null)
+			safelyCallback(_callback, null, _message);
 	}
 }

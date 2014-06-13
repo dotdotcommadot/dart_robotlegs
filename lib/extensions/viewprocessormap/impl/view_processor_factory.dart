@@ -47,7 +47,7 @@ class ViewProcessorFactory implements IViewProcessorFactory
 			(mapping) {
 			
 			if (mapping.processor == null)
-				mapping.processor = _createProcessor(mapping.processorClass);
+				mapping.processor = _createProcessor(mapping.processorType);
 			
 			mapping.processor.unprocess(view, type, _injector);
 		});
@@ -157,7 +157,7 @@ class ViewProcessorFactory implements IViewProcessorFactory
 	
 	void _removeHandlerFromView(dynamic view, Function handler)
 	{
-		if (_listenersByView[view] && (_listenersByView[view].length > 0))
+		if ((_listenersByView[view] != null) && (_listenersByView[view].length > 0))
 		{
 			_listenersByView[view].remove(handler);
 			if (_listenersByView[view].length == 0)

@@ -35,7 +35,7 @@ class ConfigManager
 		addConfigHandler(new ObjectMatcher(), _handleObject);
 		
 		// TODO: add stream-based equivalent
-		//context.addEventListener(LifecycleEvent.INITIALIZE, initialize, false, -100); 
+		(context as EventDispatcher).addListener(const Symbol(LifecycleEvent.INITIALIZE), _initialize,  -100);
 	}
 	
 	//-----------------------------------
@@ -64,7 +64,7 @@ class ConfigManager
 	//
 	//-----------------------------------
 	
-	void _initalize(LifecycleEvent event)
+	void _initialize(Event event)
 	{
 		if (!_initialized)
 		{
@@ -123,14 +123,15 @@ class ConfigManager
 	void _processType(Type type)
 	{
 		final IConfig config = _injector.getOrCreateNewInstance(type) as IConfig;
-		(config != null) && config.configure();
+		if (config != null)
+			config.configure();
 	}
 	
 	void _processObject(dynamic object)
 	{
 		_injector.injectInto(object);
-		final IConfig config = object as IConfig;
-		(config != null) && config.configure();
+		if (object != null && object is IConfig)
+			object.configure();
 	}
 }
 

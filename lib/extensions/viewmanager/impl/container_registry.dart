@@ -33,9 +33,9 @@ class ContainerRegistry
 	ContainerBinding addContainer(dynamic container)
 	{
 		if (_bindingsByContainer[container] == null)
-			return _createBinding(container);
-		else
-			return _bindingsByContainer[container];
+			_bindingsByContainer[container] =  _createBinding(container);
+		
+		return _bindingsByContainer[container];
 	}
 
 	ContainerBinding removeContainer(dynamic container)

@@ -4,7 +4,7 @@ class LifecycleTransition
 {
   //-----------------------------------
   //
-  // Public Properties
+  // Private Properties
   //
   //-----------------------------------
 	
@@ -27,6 +27,8 @@ class LifecycleTransition
 	String _transitionEvent;
 	
 	String _postTransitionEvent;
+	
+	String _initialState;
 	
 	bool _reverse = false;
 	
@@ -109,38 +111,39 @@ class LifecycleTransition
 			return;
 		}
 		
-		final String initialState = _lifecycle.state;
+		_initialState = _lifecycle.state;
 		
 		if (callback != null)
 			_callbacks.add(callback);
 		
 		_setState(_transitionState);
 		
-		_dispatcher.dispatchMessage(_name, (error) 
+		_dispatcher.dispatchMessage(_name, enterCallback, _reverse);
+	}
+	
+	void enterCallback(error)
+	{
+		if (error != null)
 		{
-			if (error != null)
-			{
-				_setState(initialState);
-				_reportError(error, _callbacks);
-				return;
-			}
-			
-			_dispatch(_preTransitionEvent);
-	    _dispatch(_transitionEvent);
-	    
-	    _setState(_finalState);
-	    
-	    final List callbacks = _callbacks;
-	    _callbacks.length = 0;
-	    
-	    callbacks.forEach( (callback) {
-	    	safelyCallback(callback, null, _name);
-	    });
-	    
-	    _dispatch(_postTransitionEvent);
+			_setState(_initialState);
+			_reportError(error, _callbacks);
+			return;
+		}
 		
-		}, _reverse);
-}
+		_dispatch(_preTransitionEvent);
+    _dispatch(_transitionEvent);
+    
+    _setState(_finalState);
+    
+    final List callbacks = _callbacks;
+    _callbacks.length = 0;
+    
+    callbacks.forEach( (callback) {
+    	safelyCallback(callback, null, _name);
+    });
+    
+    _dispatch(_postTransitionEvent);
+	}
 	
   //-----------------------------------
   //
@@ -162,8 +165,8 @@ class LifecycleTransition
 	
 	void _dispatch(String type)
 	{
-		print(type);
-		// TODO
+		if (type != '' && _lifecycle.hasEventListener(type))
+			_lifecycle.dispatchEvent(type);
 	}
 	
 	void _reportError(dynamic message, List callbacks)

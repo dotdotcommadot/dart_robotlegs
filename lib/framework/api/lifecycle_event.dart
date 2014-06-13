@@ -1,7 +1,6 @@
-
 part of robotlegs;
 
-abstract class LifecycleEvent {
+class LifecycleEvent extends Event{
 	
 	static const String ERROR = "_error";
 
@@ -30,4 +29,6 @@ abstract class LifecycleEvent {
 	static const String DESTROY = "destroy";
 
 	static const String POST_DESTROY = "postDestroy";
+	
+	LifecycleEvent(name, target, order, [data = null]) : super(name, target, order, [data = null]);
 }

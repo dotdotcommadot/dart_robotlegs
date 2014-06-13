@@ -42,9 +42,9 @@ class ExtensionInstaller
 		}
 		else
 		{
-			final Type extensionsClass = _reflector.getType(extension);
+			final Type extensionsClass = extension.runtimeType;
 			if (_classes[extensionsClass] != null)
-				return
+				return;
 			_logger.debug("Installing extension {0}", [extension]);
 			_classes[extensionsClass] = true;
 			extension.extend(_context);

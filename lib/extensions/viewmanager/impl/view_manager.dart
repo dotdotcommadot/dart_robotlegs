@@ -8,8 +8,8 @@ class ViewManager implements IViewManager
   //
   //-----------------------------------
 	
-	final List<Element> _containers = new List<Element>();
-	List<Element> get containers => _containers;
+	final List<dynamic> _containers = new List<dynamic>();
+	List<dynamic> get containers => _containers;
 	
   //-----------------------------------
   //
@@ -27,6 +27,7 @@ class ViewManager implements IViewManager
   //
   //-----------------------------------
 	
+	
 	ViewManager(this._registry);
 	
   //-----------------------------------
@@ -35,7 +36,7 @@ class ViewManager implements IViewManager
   //
   //-----------------------------------
 	
-	void addContainer(Element container)
+	void addContainer(dynamic container)
 	{
 		if (!_validContainer(container))
 			return;
@@ -115,7 +116,7 @@ class ViewManager implements IViewManager
   //
   //-----------------------------------
 	
-	bool _validContainer(Element container)
+	bool _validContainer(dynamic container)
 	{
 		_containers.forEach(
 			(registeredContainer) {

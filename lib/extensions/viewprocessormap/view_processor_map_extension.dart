@@ -27,6 +27,7 @@ class ViewProcessorMapExtension implements IExtension
 		context.beforeInitializing(_beforeInitializing);
 		context.beforeDestroying(_beforeDestroying);
 	  context.whenDestroying(_whenDestroying);
+	  
 	  _injector = context.injector;
 	  _injector.map(IViewProcessorFactory).toValue(new ViewProcessorFactory(_injector.createChildInjector()));
 	  _injector.map(IViewProcessorMap).toSingleton(ViewProcessorMap);

@@ -43,7 +43,7 @@ class Lifecycle implements ILifecycle
 
 	LifecycleTransition _destroy;
 
-	dynamic _dispatcher;
+	EventDispatcher _dispatcher;
 	
   //-----------------------------------
   //
@@ -53,7 +53,11 @@ class Lifecycle implements ILifecycle
 	
 	Lifecycle(this._target)
 	{
-		//TODO _dispatcher = target as IEventDispatcher || new EventDispatcher(this);
+		if (target != null) 
+			_dispatcher = target as EventDispatcher;
+		/*else
+			_dispatcher = this;*/
+		
 		_configureTransitions();
 	}
 	
@@ -85,21 +89,27 @@ class Lifecycle implements ILifecycle
 	
 	ILifecycle beforeInitializing(Function handler)
 	{
-		uninitialized || _reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
-  	_initialize.addBeforeHandler(handler);
+		if (!uninitialized)
+			_reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
+  	
+		_initialize.addBeforeHandler(handler);
   	return this;
 	}
 
 	ILifecycle whenInitializing(Function handler)
 	{
-		initialized && _reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
+		if (initialized)
+			_reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
+		_dispatcher.addListener(new Symbol(LifecycleEvent.INITIALIZE), createSyncLifecycleListener(handler));
  	 	//TODO: addEventListener(LifecycleEvent.INITIALIZE, createSyncLifecycleListener(handler, true));
   	return this;
 	}
 
 	ILifecycle afterInitializing(Function handler)
 	{
-		initialized && _reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
+		if (initialized)
+			_reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
+		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_INITIALIZE), createSyncLifecycleListener(handler));
  		//TODO: addEventListener(LifecycleEvent.POST_INITIALIZE, createSyncLifecycleListener(handler, true));
   	return this;
 	}
@@ -113,12 +123,14 @@ class Lifecycle implements ILifecycle
 	ILifecycle whenSuspending(Function handler)
 	{
 		//TODO: addEventListener(LifecycleEvent.SUSPEND, createSyncLifecycleListener(handler));
+		_dispatcher.addListener(new Symbol(LifecycleEvent.SUSPEND), createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterSuspending(Function handler)
 	{
 		//TODO: addEventListener(LifecycleEvent.POST_SUSPEND, createSyncLifecycleListener(handler));
+		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_SUSPEND), createSyncLifecycleListener(handler));
  		return this;
 	}
 
@@ -131,12 +143,14 @@ class Lifecycle implements ILifecycle
 	ILifecycle whenResuming(Function handler)
 	{
 		//TODO: addEventListener(LifecycleEvent.RESUME, createSyncLifecycleListener(handler));
+		_dispatcher.addListener(new Symbol(LifecycleEvent.RESUME), createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterResuming(Function handler)
 	{
 		//TODO: addEventListener(LifecycleEvent.POST_RESUME, createSyncLifecycleListener(handler));
+		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_RESUME), createSyncLifecycleListener(handler));
   	return this;
 	}
 
@@ -149,12 +163,14 @@ class Lifecycle implements ILifecycle
 	ILifecycle whenDestroying(Function handler)
 	{
 		//TODO: addEventListener(LifecycleEvent.DESTROY, createSyncLifecycleListener(handler, true));
+		_dispatcher.addListener(new Symbol(LifecycleEvent.DESTROY), createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterDestroying(Function handler)
 	{
 		//TODO: addEventListener(LifecycleEvent.POST_DESTROY, createSyncLifecycleListener(handler, true));
+		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_DESTROY), createSyncLifecycleListener(handler));
   	return this;
 	}
 	
@@ -171,16 +187,16 @@ class Lifecycle implements ILifecycle
 	}*/
 	
 	//TODO
-	/*bool dispatchEvent()
+	void dispatchEvent(String type)
 	{
-		
-	}*/
+		return _dispatcher.send(new Symbol(type));
+	}
 
 	//TODO
-	/*bool hasEventListener()
+	bool hasEventListener(String type)
 	{
-		
-	}*/
+		return _dispatcher.hasListener(new Symbol(type));
+	}
 
 	//TODO
 	/*bool willTrigger()
@@ -199,7 +215,8 @@ class Lifecycle implements ILifecycle
 		if (_state == state)
 			return;
 		_state = state;
-		//TODO: dispatchEvent(new LifecycleEvent(LifecycleEvent.STATE_CHANGE));
+		
+		dispatchEvent(LifecycleEvent.STATE_CHANGE);
 	}
 	
 	void _addReversedEventTypes(List types)
@@ -242,10 +259,23 @@ class Lifecycle implements ILifecycle
 	}
 	
 	//TODO
-	/*Function createSyncLifecycleListener()
+	Function createSyncLifecycleListener(Function handler, [bool once = false])
 	{
+		//TODO: implement handler typedef
 		
-	}*/
+		/*return () {
+			
+			if (once)
+				
+				
+		};*/
+		
+		return (event) {
+    				handler();
+    			};
+		
+		
+	}
 	
 	void _reportError(String message)
 	{
