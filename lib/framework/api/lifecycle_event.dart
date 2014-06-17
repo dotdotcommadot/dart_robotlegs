@@ -1,6 +1,6 @@
 part of robotlegs;
 
-class LifecycleEvent extends Event{
+class LifecycleEvent extends Message{
 	
 	static const String ERROR = "_error";
 

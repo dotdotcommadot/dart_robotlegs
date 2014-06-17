@@ -35,7 +35,7 @@ class ConfigManager
 		addConfigHandler(new ObjectMatcher(), _handleObject);
 		
 		// TODO: add stream-based equivalent
-		(context as EventDispatcher).addListener(const Symbol(LifecycleEvent.INITIALIZE), _initialize,  -100);
+		(context as MessageDispatcher).addListener(const Symbol(LifecycleEvent.INITIALIZE), _initialize,  -100);
 	}
 	
 	//-----------------------------------
@@ -64,7 +64,7 @@ class ConfigManager
 	//
 	//-----------------------------------
 	
-	void _initialize(Event event)
+	void _initialize(Message message)
 	{
 		if (!_initialized)
 		{

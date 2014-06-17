@@ -47,7 +47,7 @@ part 'framework/impl/lifecycle.dart';
 part 'framework/impl/lifecycle_transition.dart';
 part 'framework/impl/logger.dart';
 part 'framework/impl/log_manager.dart';
-part 'framework/impl/message_dispatcher.dart';
+part 'framework/impl/rl_message_dispatcher.dart';
 part 'framework/impl/object_processor.dart';
 part 'framework/impl/pin.dart';
 part 'framework/impl/robotlegs_injector.dart';

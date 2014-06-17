@@ -1,6 +1,6 @@
 part of robotlegs;
 
-class Context extends EventDispatcher implements IContext
+class Context extends MessageDispatcher implements IContext
 {
 	
   //-----------------------------------
