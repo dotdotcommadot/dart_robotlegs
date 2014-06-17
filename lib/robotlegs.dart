@@ -81,6 +81,12 @@ part 'extensions/commandcenter/impl/null_command_trigger.dart';
 
 part 'extensions/mediatormap/api/i_mediator.dart';
 
+// message command map
+
+part 'extensions/messagecommandmap/api/i_message_command_map.dart';
+part 'extensions/messagecommandmap/impl/message_command_map.dart';
+part 'extensions/messagecommandmap/impl/message_command_trigger.dart';
+
 // local event map
 
 part 'extensions/localeventmap/api/i_event_map.dart';
