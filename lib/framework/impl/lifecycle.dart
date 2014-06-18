@@ -101,7 +101,6 @@ class Lifecycle implements ILifecycle
 		if (initialized)
 			_reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
 		_dispatcher.addListener(new Symbol(LifecycleEvent.INITIALIZE), createSyncLifecycleListener(handler));
- 	 	//TODO: addEventListener(LifecycleEvent.INITIALIZE, createSyncLifecycleListener(handler, true));
   	return this;
 	}
 
@@ -110,7 +109,6 @@ class Lifecycle implements ILifecycle
 		if (initialized)
 			_reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
 		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_INITIALIZE), createSyncLifecycleListener(handler));
- 		//TODO: addEventListener(LifecycleEvent.POST_INITIALIZE, createSyncLifecycleListener(handler, true));
   	return this;
 	}
 
@@ -122,14 +120,12 @@ class Lifecycle implements ILifecycle
 
 	ILifecycle whenSuspending(Function handler)
 	{
-		//TODO: addEventListener(LifecycleEvent.SUSPEND, createSyncLifecycleListener(handler));
 		_dispatcher.addListener(new Symbol(LifecycleEvent.SUSPEND), createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterSuspending(Function handler)
 	{
-		//TODO: addEventListener(LifecycleEvent.POST_SUSPEND, createSyncLifecycleListener(handler));
 		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_SUSPEND), createSyncLifecycleListener(handler));
  		return this;
 	}
@@ -142,14 +138,12 @@ class Lifecycle implements ILifecycle
 
 	ILifecycle whenResuming(Function handler)
 	{
-		//TODO: addEventListener(LifecycleEvent.RESUME, createSyncLifecycleListener(handler));
 		_dispatcher.addListener(new Symbol(LifecycleEvent.RESUME), createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterResuming(Function handler)
 	{
-		//TODO: addEventListener(LifecycleEvent.POST_RESUME, createSyncLifecycleListener(handler));
 		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_RESUME), createSyncLifecycleListener(handler));
   	return this;
 	}
@@ -162,14 +156,12 @@ class Lifecycle implements ILifecycle
 
 	ILifecycle whenDestroying(Function handler)
 	{
-		//TODO: addEventListener(LifecycleEvent.DESTROY, createSyncLifecycleListener(handler, true));
 		_dispatcher.addListener(new Symbol(LifecycleEvent.DESTROY), createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterDestroying(Function handler)
 	{
-		//TODO: addEventListener(LifecycleEvent.POST_DESTROY, createSyncLifecycleListener(handler, true));
 		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_DESTROY), createSyncLifecycleListener(handler));
   	return this;
 	}
