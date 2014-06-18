@@ -20,7 +20,7 @@ class CommandExecutor implements ICommandExecutor
   //
   //-----------------------------------
 	
-	CommandExecutor(this._injector, this._removeMapping, this._handleResult);
+	CommandExecutor(this._injector, [this._removeMapping = null, this._handleResult = null]);
 	
   //-----------------------------------
   //

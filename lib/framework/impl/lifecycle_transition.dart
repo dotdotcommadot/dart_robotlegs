@@ -10,7 +10,7 @@ class LifecycleTransition
 	
 	final List<String> _fromStates = new List<String>();
 	
-	final MessageDispatcher _dispatcher = new MessageDispatcher();
+	final RLMessageDispatcher _dispatcher = new RLMessageDispatcher();
 	
 	final List _callbacks = [];
 	

@@ -43,7 +43,7 @@ class Lifecycle implements ILifecycle
 
 	LifecycleTransition _destroy;
 
-	EventDispatcher _dispatcher;
+	MessageDispatcher _dispatcher;
 	
   //-----------------------------------
   //
@@ -54,7 +54,7 @@ class Lifecycle implements ILifecycle
 	Lifecycle(this._target)
 	{
 		if (target != null) 
-			_dispatcher = target as EventDispatcher;
+			_dispatcher = target as MessageDispatcher;
 		/*else
 			_dispatcher = this;*/
 		

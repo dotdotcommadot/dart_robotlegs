@@ -1,6 +1,6 @@
 part of robotlegs;
 
-class MessageDispatcher
+class RLMessageDispatcher
 {
   //-----------------------------------
   //
@@ -52,7 +52,7 @@ class MessageDispatcher
 		List handlers = _handlers[message];
 		if (handlers != null)
 		{
-			new MessageRunner(message, handlers, callback).run();
+			new RLMessageRunner(message, handlers, callback).run();
 		}
 		else
 		{
@@ -62,7 +62,7 @@ class MessageDispatcher
 	}
 }
 
-class MessageRunner
+class RLMessageRunner
 {
   //-----------------------------------
   //
@@ -82,7 +82,7 @@ class MessageRunner
   //
   //-----------------------------------
 	
-	MessageRunner(this._message, this._handlers, this._callback);
+	RLMessageRunner(this._message, this._handlers, this._callback);
 	
   //-----------------------------------
   //

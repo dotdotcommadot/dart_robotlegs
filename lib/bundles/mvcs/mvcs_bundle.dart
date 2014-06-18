@@ -1,7 +1,7 @@
 part of robotlegs;
 
-class MVCSBundle implements IBundle {
-	
+class MVCSBundle implements IBundle 
+{
   //-----------------------------------
   //
   // Public Methods

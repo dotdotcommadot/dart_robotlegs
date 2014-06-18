@@ -16,11 +16,4 @@ void safelyCallback(Function callback, [dynamic error = null, dynamic message = 
 	{
 		callback(error, message);
 	}
-	 
-	 
-	
-	
-	
-	
-	//Function.apply(callback, [error, message]);
 }
