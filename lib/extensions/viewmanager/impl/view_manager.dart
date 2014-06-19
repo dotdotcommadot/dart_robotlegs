@@ -51,7 +51,7 @@ class ViewManager implements IViewManager
 		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.CONTAINER_ADD, container));
 	}
 
-	void removeContainer(Element container)
+	void removeContainer(dom.Element container)
 	{
 		if (!_containers.contains(container))
 			return;

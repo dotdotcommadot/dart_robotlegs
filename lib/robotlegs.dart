@@ -6,7 +6,7 @@ library robotlegs;
 
 import 'dart:mirrors';
 import 'dart:async';
-import 'dart:html';
+import 'dart:html' as dom;
 import 'package:robotlegs_di/robotlegs_di.dart';
 import "package:dotdotcommadot_messaging/dotdotcommadot_messaging.dart";
 
@@ -77,13 +77,10 @@ part 'extensions/commandcenter/impl/command_mapping_list.dart';
 part 'extensions/commandcenter/impl/command_trigger_map.dart';
 part 'extensions/commandcenter/impl/null_command_trigger.dart';
 
-// mediator map
-
-part 'extensions/mediatormap/api/i_mediator.dart';
-
 // message command map
 
 part 'extensions/messagecommandmap/api/i_message_command_map.dart';
+
 part 'extensions/messagecommandmap/impl/message_command_map.dart';
 part 'extensions/messagecommandmap/impl/message_command_trigger.dart';
 
@@ -101,6 +98,26 @@ part 'extensions/matching/i_type_matcher_factory.dart';
 part 'extensions/matching/type_filter.dart';
 part 'extensions/matching/type_matcher.dart';
 part 'extensions/matching/type_matcher_error.dart';
+
+// mediator map
+
+part 'extensions/mediatormap/api/i_mediator.dart';
+part 'extensions/mediatormap/api/i_mediator_map.dart';
+part 'extensions/mediatormap/api/i_mediator_mapping.dart';
+
+part 'extensions/mediatormap/dsl/i_mediator_configurator.dart';
+part 'extensions/mediatormap/dsl/i_mediator_mapper.dart';
+part 'extensions/mediatormap/dsl/i_mediator_unmapper.dart';
+
+part 'extensions/mediatormap/impl/mediator_factory.dart';
+part 'extensions/mediatormap/impl/mediator_manager.dart';
+part 'extensions/mediatormap/impl/mediator_map.dart';
+part 'extensions/mediatormap/impl/mediator_mapper.dart';
+part 'extensions/mediatormap/impl/mediator_mapping.dart';
+part 'extensions/mediatormap/impl/mediator_view_handler.dart';
+part 'extensions/mediatormap/impl/null_mediator_unmapper.dart';
+
+part 'extensions/mediatormap/mediator_map_extension.dart';
 
 // context view
 

@@ -35,7 +35,7 @@ class StageCrawler
   //
   //-----------------------------------
 	
-	void _scanContainer(Element container)
+	void _scanContainer(dom.Element container)
 	{
 		_processView(container);
 		final int numChildren = container.children.length;
@@ -43,7 +43,7 @@ class StageCrawler
 		for (int i = 0; i < numChildren; i++)
 		{
 			final dynamic child = container.children[i];
-			child is Element 
+			child is dom.Element 
 				? _scanContainer(child)
 		    : _processView(child);
 		}

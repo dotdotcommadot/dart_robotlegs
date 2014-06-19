@@ -12,8 +12,8 @@ class ContainerBinding
 	ContainerBinding get parent => _parent;
 	set parent(value) => _parent = value;
 
-	Element _container;
-	Element get container => _container;
+	dom.Element _container;
+	dom.Element get container => _container;
 	
   //-----------------------------------
   //
@@ -57,7 +57,7 @@ class ContainerBinding
 		}
 	}
 	
-	void handleView(Element view, Type type)
+	void handleView(dom.Element view, Type type)
 	{
 		final int length = _handlers.length;
 		
