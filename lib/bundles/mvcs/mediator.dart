@@ -17,7 +17,7 @@ class Mediator implements IMediator {
 	@inject
 	IEventDispatcher eventDispatcher;
 	
-	dynamic _viewComponent;
+	dynamic viewComponent;
 	
   //-----------------------------------
   //
@@ -33,23 +33,25 @@ class Mediator implements IMediator {
   //
   //-----------------------------------
 	
-	void addViewListener( String eventString, Function listener, Type eventType ) {
-		
-	}
+	void preInitialize() {}
 
-	void addContextListener( String eventString, Function listener, Type eventType ) {
-		
-	}
+	void initialize() {}
 
-	void removeViewListener( String eventString, Function listener, Type eventType ) {
-		
-	}
+	void postInitialize() {}
 
-	void removeContextListener( String eventString, Function listener, Type eventType ) {
-		
-	}
+	void preDestroy() {}
+	
+	void destroy() {}
 
-	void dispatch( Stream stream ) {
-		
-	}
+	void postDestroy() {}
+	
+	void addViewListener( String eventString, Function listener, Type eventType ) {}
+
+	void addContextListener( String eventString, Function listener, Type eventType ) {}
+
+	void removeViewListener( String eventString, Function listener, Type eventType ) {}
+
+	void removeContextListener( String eventString, Function listener, Type eventType ) {}
+
+	void dispatch( Stream stream ) {}
 }
