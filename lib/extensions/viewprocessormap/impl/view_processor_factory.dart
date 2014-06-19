@@ -141,18 +141,18 @@ class ViewProcessorFactory implements IViewProcessorFactory
 	
 	void _createRemovedListener(dynamic view, Type type, List<IViewProcessorMapping> processorMappings)
 	{
-		if (view is Element)
+		// TODO: implement
+		/*if (view is dom.Element)
 		{
-			// TODO: implement
-			/*final Function handler = (_) {
+			final Function handler = (_) {
 		    runUnprocessors(view, type, processorMappings);
 		    (view as Element).removeEventListener(Event.REMOVED_FROM_STAGE, handler);
 		    _removeHandlerFromView(view, handler);
-	    };*/
+	    };
 			
-			//_listenersByView[view].add(handler);
-			//(view as Element).addEventListener(Event.REMOVED_FROM_STAGE, handler, false, 0, true);
-		}
+			_listenersByView[view].add(handler);
+			(view as Element).addEventListener(Event.REMOVED_FROM_STAGE, handler, false, 0, true);
+		}*/
 	}
 	
 	void _removeHandlerFromView(dynamic view, Function handler)

@@ -84,6 +84,8 @@ part 'extensions/messagecommandmap/api/i_message_command_map.dart';
 part 'extensions/messagecommandmap/impl/message_command_map.dart';
 part 'extensions/messagecommandmap/impl/message_command_trigger.dart';
 
+part 'extensions/messagecommandmap/message_command_map_extension.dart';
+
 // local event map
 
 part 'extensions/localeventmap/api/i_event_map.dart';

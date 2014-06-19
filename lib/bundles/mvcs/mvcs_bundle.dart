@@ -17,7 +17,9 @@ class MVCSBundle implements IBundle
 				ViewManagerExtension,
 				ViewProcessorMapExtension,
 				StageCrawlerExtension,
-				StageSyncExtension]);
+				StageSyncExtension,
+				MessageCommandMapExtension,
+				MediatorMapExtension]);
 		
 		context.configure([ContextViewListenerConfig]);
 	}

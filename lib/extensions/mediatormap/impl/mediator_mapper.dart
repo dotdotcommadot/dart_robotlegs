@@ -33,8 +33,8 @@ class MediatorMapper implements IMediatorMapper, IMediatorUnmapper
 	IMediatorConfigurator toMediator(Type mediatorType)
 	{
 		final IMediatorMapping mapping = _mappings[mediatorType];
-		return mapping == null 
-				? overwriteMapping(mapping)
+		return (mapping != null)
+				? _overwriteMapping(mapping)
 	      : _createMapping(mediatorType);
 	}
 	
@@ -74,7 +74,7 @@ class MediatorMapper implements IMediatorMapper, IMediatorUnmapper
 			_logger.debug('{0} unmapped from {1}', [_typeFilter, mapping]);
 	}
 	
-	IMediatorConfigurator overwriteMapping(IMediatorMapping mapping)
+	IMediatorConfigurator _overwriteMapping(IMediatorMapping mapping)
 	{
 		if (_logger != null)
 			_logger.warn('{0} already mapped to {1}\n' +

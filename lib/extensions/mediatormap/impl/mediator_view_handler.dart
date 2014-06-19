@@ -20,7 +20,7 @@ class MediatorViewHandler
   //
   //-----------------------------------
 	
-	MediatorViewHandler(_factory);
+	MediatorViewHandler(this._factory);
 	
   //-----------------------------------
   //
