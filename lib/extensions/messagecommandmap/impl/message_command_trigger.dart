@@ -12,8 +12,6 @@ class MessageCommandTrigger implements ICommandTrigger
 	
 	Symbol _name;
 	
-	Type _messageType;
-	
 	ICommandMappingList _mappings;
 	
 	ICommandExecutor _executor;
@@ -28,13 +26,11 @@ class MessageCommandTrigger implements ICommandTrigger
 		IInjector injector,
 		IMessageDispatcher dispatcher,
 		Symbol name,
-		[Type messageType = null,
-		 List processors = null,
+		[List processors = null,
 		 ILogger logger = null])
 	{
 		_dispatcher = dispatcher;
 		_name = name;
-		_messageType = messageType;
 		_mappings = new CommandMappingList(this, processors, logger);
   	_executor = new CommandExecutor(injector, _mappings.removeMapping);
 	}
@@ -68,10 +64,10 @@ class MessageCommandTrigger implements ICommandTrigger
   
   void messageHandler(Message message)
   {
-  	final Type messageConstructor = message.runtimeType;
+  	//final Type messageConstructor = message.runtimeType;
   	Type payloadMessageType;
   	
-  	if (messageConstructor == _messageType || _messageType == null)
+  	/*if (messageConstructor == _messageType || _messageType == null)
   	{
   		payloadMessageType = messageConstructor;
   	}
@@ -82,7 +78,7 @@ class MessageCommandTrigger implements ICommandTrigger
   	else
   	{
   		return;
-  	}
+  	}*/
   	
   	_executor.executeCommands(_mappings.getList(), new CommandPayload([message], [payloadMessageType]));
   }

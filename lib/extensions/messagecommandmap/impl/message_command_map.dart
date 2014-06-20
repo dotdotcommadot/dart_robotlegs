@@ -38,14 +38,14 @@ class MessageCommandMap implements IMessageCommandMap
   //
   //-----------------------------------
 	
-	ICommandMapper map(Symbol name, Type messageType)
+	ICommandMapper map(Symbol name)
 	{
-		return _getTrigger(name, messageType).createMapper();
+		return _getTrigger(name).createMapper();
 	}
 
-	ICommandUnmapper unmap(Symbol name, Type messageType)
+	ICommandUnmapper unmap(Symbol name)
 	{
-		return _getTrigger(name, messageType).createMapper();
+		return _getTrigger(name).createMapper();
 	}
 	
 	IMessageCommandMap addMappingProcessor(Function handler)
@@ -62,18 +62,18 @@ class MessageCommandMap implements IMessageCommandMap
   //
   //-----------------------------------
 	
-	String _getKey(Symbol name, Type messageType)
+	String _getKey(Symbol name)
 	{
-		return name.getName() + messageType.toString();
+		return MirrorSystem.getName(name);
 	}
 
-	MessageCommandTrigger _getTrigger(Symbol name, Type messageType)
+	MessageCommandTrigger _getTrigger(Symbol name)
 	{
-		return _triggerMap.getTrigger([name, messageType]) as MessageCommandTrigger;
+		return _triggerMap.getTrigger([name]) as MessageCommandTrigger;
 	}
 	
-	MessageCommandTrigger _createTrigger(Symbol name, Type messageType)
+	MessageCommandTrigger _createTrigger(Symbol name)
 	{
-		return new MessageCommandTrigger(_injector, _dispatcher, name, messageType, _mappingProcessors, _logger);
+		return new MessageCommandTrigger(_injector, _dispatcher, name, _mappingProcessors, _logger);
 	}
 }

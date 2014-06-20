@@ -8,7 +8,7 @@ class CommandTriggerMap
   //
   //-----------------------------------
 	
-	Map _triggers;
+	Map _triggers = new Map();
 	
 	Function _keyFactory;
 	
@@ -51,12 +51,12 @@ class CommandTriggerMap
 	
 	dynamic _getKey(List mapperArgs)
 	{
-		return _keyFactory(mapperArgs);
+		return Function.apply(_keyFactory, mapperArgs);
 	}
 
 	ICommandTrigger _createTrigger(List mapperArgs)
 	{
-		return _triggerFactory(mapperArgs);
+		return Function.apply(_triggerFactory, mapperArgs);
 	}
 
 	ICommandTrigger _destroyTrigger(dynamic key)

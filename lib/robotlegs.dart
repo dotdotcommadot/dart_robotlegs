@@ -89,7 +89,6 @@ part 'extensions/messagecommandmap/message_command_map_extension.dart';
 // local event map
 
 part 'extensions/localeventmap/api/i_event_map.dart';
-part 'extensions/localeventmap/api/i_event_dispatcher.dart';
 
 // matching
 
@@ -120,6 +119,10 @@ part 'extensions/mediatormap/impl/mediator_view_handler.dart';
 part 'extensions/mediatormap/impl/null_mediator_unmapper.dart';
 
 part 'extensions/mediatormap/mediator_map_extension.dart';
+
+// message dispatcher
+
+part 'extensions/message_dispatcher/message_dispatcher_extension.dart';
 
 // context view
 

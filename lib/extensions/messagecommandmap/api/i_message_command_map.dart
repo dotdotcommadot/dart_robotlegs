@@ -2,9 +2,9 @@ part of robotlegs;
 
 abstract class IMessageCommandMap
 {
-	ICommandMapper map(Symbol name, Type messageType);
+	ICommandMapper map(Symbol name);
 
-	ICommandUnmapper unmap(Symbol name, Type messageType);
+	ICommandUnmapper unmap(Symbol name);
 	
 	IMessageCommandMap addMappingProcessor(Function handler);
 }

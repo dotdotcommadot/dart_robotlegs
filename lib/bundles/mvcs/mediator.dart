@@ -1,6 +1,14 @@
 part of robotlegs;
 
-class Mediator implements IMediator {
+class Mediator implements IMediator 
+{
+  //-----------------------------------
+  //
+  // Public Methods
+  //
+  //-----------------------------------
+	
+	Map<StreamController, StreamSubscription> _subscriptions = new Map<StreamController, StreamSubscription>();
 	
   //-----------------------------------
   //
@@ -8,14 +16,11 @@ class Mediator implements IMediator {
   //
   //-----------------------------------
 	
-	@inject
-	IEventMap eventMap;
-	
 	/*
-	 * TODO: [IEventDispatcher] should be replaced with a streams-based equivalent
+	 * TODO: [IMessageDispatcher] should be replaced with a streams-based equivalent
 	 */
 	@inject
-	IEventDispatcher eventDispatcher;
+	IMessageDispatcher messageDispatcher;
 	
 	dynamic viewComponent;
 	
@@ -45,13 +50,19 @@ class Mediator implements IMediator {
 
 	void postDestroy() {}
 	
-	void addViewListener( String eventString, Function listener, Type eventType ) {}
+	void addStreamListener(Stream stream, Function handler) 
+	{
+		stream.listen(handler);
+	}
 
-	void addContextListener( String eventString, Function listener, Type eventType ) {}
 
-	void removeViewListener( String eventString, Function listener, Type eventType ) {}
+	void removeListener(StreamController streamController, Function handler) 
+	{
+		
+	}
 
-	void removeContextListener( String eventString, Function listener, Type eventType ) {}
-
-	void dispatch( Stream stream ) {}
+	void dispatch(Symbol name, [dynamic data = null]) 
+	{
+		messageDispatcher.send(name, data);
+	}
 }
