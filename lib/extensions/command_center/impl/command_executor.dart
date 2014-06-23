@@ -58,8 +58,14 @@ class CommandExecutor implements ICommandExecutor
   		
   		if (command != null && mapping.executeMethod != null)
   		{
-  			final Function executeMethod = command[mapping.executeMethod];
-  			final dynamic result = Function.apply(executeMethod, payload.values);
+  			InstanceMirror mirror = reflect(command);
+  			dynamic result = mirror.invoke(mapping.executeMethod, []);
+  			
+  			//final dynamic result = command.invoke(mapping.executeMethod);
+  			
+  			
+  			/*final Function executeMethod = command[mapping.executeMethod];
+  			final dynamic result = Function.apply(executeMethod, payload.values);*/
   			
   			if (_handleResult != null)
   				Function.apply(_handleResult, [result, command, mapping]);
@@ -84,7 +90,7 @@ class CommandExecutor implements ICommandExecutor
   
   void _mapPayload(CommandPayload payload)
   {
-  	for (int i = payload.length; i > 0; i--)
+  	for (int i = 0; i < payload.types.length; i++)
   	{
   		_injector.map(payload.types[i]).toValue(payload.values[i]);
   	}
@@ -92,7 +98,7 @@ class CommandExecutor implements ICommandExecutor
   
   void _unmapPayload(CommandPayload payload)
   {
-  	for (int i = payload.length; i > 0; i--)
+  	for (int i = 0; i < payload.types.length; i++)
   	{
   		_injector.unmap(payload.types[i]);
   	}
