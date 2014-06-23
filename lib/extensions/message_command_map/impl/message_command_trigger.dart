@@ -64,21 +64,7 @@ class MessageCommandTrigger implements ICommandTrigger
   
   void messageHandler(Message message)
   {
-  	//final Type messageConstructor = message.runtimeType;
-  	Type payloadMessageType;
-  	
-  	/*if (messageConstructor == _messageType || _messageType == null)
-  	{
-  		payloadMessageType = messageConstructor;
-  	}
-  	else if (_messageType == Message)
-  	{
-  		payloadMessageType = _messageType;
-  	}
-  	else
-  	{
-  		return;
-  	}*/
+  	final Type payloadMessageType = message.runtimeType;
   	
   	_executor.executeCommands(_mappings.getList(), new CommandPayload([message], [payloadMessageType]));
   }
