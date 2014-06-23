@@ -77,14 +77,12 @@ part 'extensions/command_center/impl/command_mapping_list.dart';
 part 'extensions/command_center/impl/command_trigger_map.dart';
 part 'extensions/command_center/impl/null_command_trigger.dart';
 
-// message command map
+// context view
 
-part 'extensions/message_command_map/api/i_message_command_map.dart';
-
-part 'extensions/message_command_map/impl/message_command_map.dart';
-part 'extensions/message_command_map/impl/message_command_trigger.dart';
-
-part 'extensions/message_command_map/message_command_map_extension.dart';
+part 'extensions/context_view/context_view.dart';
+part 'extensions/context_view/context_view_extension.dart';
+part 'extensions/context_view/context_view_listener_config.dart';
+part 'extensions/context_view/stage_sync_extension.dart';
 
 // local event map
 
@@ -120,16 +118,18 @@ part 'extensions/mediator_map/impl/null_mediator_unmapper.dart';
 
 part 'extensions/mediator_map/mediator_map_extension.dart';
 
+// message command map
+
+part 'extensions/message_command_map/api/i_message_command_map.dart';
+
+part 'extensions/message_command_map/impl/message_command_map.dart';
+part 'extensions/message_command_map/impl/message_command_trigger.dart';
+
+part 'extensions/message_command_map/message_command_map_extension.dart';
+
 // message dispatcher
 
 part 'extensions/message_dispatcher/message_dispatcher_extension.dart';
-
-// context view
-
-part 'extensions/context_view/context_view.dart';
-part 'extensions/context_view/context_view_extension.dart';
-part 'extensions/context_view/context_view_listener_config.dart';
-part 'extensions/context_view/stage_sync_extension.dart';
 
 // view manager
 
