@@ -59,36 +59,36 @@ part 'framework/impl/safely_callback.dart';
 
 // command center
 
-part 'extensions/commandcenter/api/command_payload.dart';
-part 'extensions/commandcenter/api/i_command.dart';
-part 'extensions/commandcenter/api/i_command_executor.dart';
-part 'extensions/commandcenter/api/i_command_mapping.dart';
-part 'extensions/commandcenter/api/i_command_mapping_list.dart';
-part 'extensions/commandcenter/api/i_command_trigger.dart';
+part 'extensions/command_center/api/command_payload.dart';
+part 'extensions/command_center/api/i_command.dart';
+part 'extensions/command_center/api/i_command_executor.dart';
+part 'extensions/command_center/api/i_command_mapping.dart';
+part 'extensions/command_center/api/i_command_mapping_list.dart';
+part 'extensions/command_center/api/i_command_trigger.dart';
 
-part 'extensions/commandcenter/dsl/i_command_configurator.dart';
-part 'extensions/commandcenter/dsl/i_command_mapper.dart';
-part 'extensions/commandcenter/dsl/i_command_unmapper.dart';
+part 'extensions/command_center/dsl/i_command_configurator.dart';
+part 'extensions/command_center/dsl/i_command_mapper.dart';
+part 'extensions/command_center/dsl/i_command_unmapper.dart';
 
-part 'extensions/commandcenter/impl/command_executor.dart';
-part 'extensions/commandcenter/impl/command_mapper.dart';
-part 'extensions/commandcenter/impl/command_mapping.dart';
-part 'extensions/commandcenter/impl/command_mapping_list.dart';
-part 'extensions/commandcenter/impl/command_trigger_map.dart';
-part 'extensions/commandcenter/impl/null_command_trigger.dart';
+part 'extensions/command_center/impl/command_executor.dart';
+part 'extensions/command_center/impl/command_mapper.dart';
+part 'extensions/command_center/impl/command_mapping.dart';
+part 'extensions/command_center/impl/command_mapping_list.dart';
+part 'extensions/command_center/impl/command_trigger_map.dart';
+part 'extensions/command_center/impl/null_command_trigger.dart';
 
 // message command map
 
-part 'extensions/messagecommandmap/api/i_message_command_map.dart';
+part 'extensions/message_command_map/api/i_message_command_map.dart';
 
-part 'extensions/messagecommandmap/impl/message_command_map.dart';
-part 'extensions/messagecommandmap/impl/message_command_trigger.dart';
+part 'extensions/message_command_map/impl/message_command_map.dart';
+part 'extensions/message_command_map/impl/message_command_trigger.dart';
 
-part 'extensions/messagecommandmap/message_command_map_extension.dart';
+part 'extensions/message_command_map/message_command_map_extension.dart';
 
 // local event map
 
-part 'extensions/localeventmap/api/i_event_map.dart';
+part 'extensions/local_event_map/api/i_event_map.dart';
 
 // matching
 
@@ -102,23 +102,23 @@ part 'extensions/matching/type_matcher_error.dart';
 
 // mediator map
 
-part 'extensions/mediatormap/api/i_mediator.dart';
-part 'extensions/mediatormap/api/i_mediator_map.dart';
-part 'extensions/mediatormap/api/i_mediator_mapping.dart';
+part 'extensions/mediator_map/api/i_mediator.dart';
+part 'extensions/mediator_map/api/i_mediator_map.dart';
+part 'extensions/mediator_map/api/i_mediator_mapping.dart';
 
-part 'extensions/mediatormap/dsl/i_mediator_configurator.dart';
-part 'extensions/mediatormap/dsl/i_mediator_mapper.dart';
-part 'extensions/mediatormap/dsl/i_mediator_unmapper.dart';
+part 'extensions/mediator_map/dsl/i_mediator_configurator.dart';
+part 'extensions/mediator_map/dsl/i_mediator_mapper.dart';
+part 'extensions/mediator_map/dsl/i_mediator_unmapper.dart';
 
-part 'extensions/mediatormap/impl/mediator_factory.dart';
-part 'extensions/mediatormap/impl/mediator_manager.dart';
-part 'extensions/mediatormap/impl/mediator_map.dart';
-part 'extensions/mediatormap/impl/mediator_mapper.dart';
-part 'extensions/mediatormap/impl/mediator_mapping.dart';
-part 'extensions/mediatormap/impl/mediator_view_handler.dart';
-part 'extensions/mediatormap/impl/null_mediator_unmapper.dart';
+part 'extensions/mediator_map/impl/mediator_factory.dart';
+part 'extensions/mediator_map/impl/mediator_manager.dart';
+part 'extensions/mediator_map/impl/mediator_map.dart';
+part 'extensions/mediator_map/impl/mediator_mapper.dart';
+part 'extensions/mediator_map/impl/mediator_mapping.dart';
+part 'extensions/mediator_map/impl/mediator_view_handler.dart';
+part 'extensions/mediator_map/impl/null_mediator_unmapper.dart';
 
-part 'extensions/mediatormap/mediator_map_extension.dart';
+part 'extensions/mediator_map/mediator_map_extension.dart';
 
 // message dispatcher
 
@@ -126,43 +126,43 @@ part 'extensions/message_dispatcher/message_dispatcher_extension.dart';
 
 // context view
 
-part 'extensions/contextview/context_view.dart';
-part 'extensions/contextview/context_view_extension.dart';
-part 'extensions/contextview/context_view_listener_config.dart';
-part 'extensions/contextview/stage_sync_extension.dart';
+part 'extensions/context_view/context_view.dart';
+part 'extensions/context_view/context_view_extension.dart';
+part 'extensions/context_view/context_view_listener_config.dart';
+part 'extensions/context_view/stage_sync_extension.dart';
 
 // view manager
 
-part 'extensions/viewmanager/api/i_view_handler.dart';
-part 'extensions/viewmanager/api/i_view_manager.dart';
+part 'extensions/view_manager/api/i_view_handler.dart';
+part 'extensions/view_manager/api/i_view_manager.dart';
 
-part 'extensions/viewmanager/impl/container_binding.dart';
-part 'extensions/viewmanager/impl/container_registry.dart';
-part 'extensions/viewmanager/impl/stage_crawler.dart';
-part 'extensions/viewmanager/impl/view_manager.dart';
+part 'extensions/view_manager/impl/container_binding.dart';
+part 'extensions/view_manager/impl/container_registry.dart';
+part 'extensions/view_manager/impl/stage_crawler.dart';
+part 'extensions/view_manager/impl/view_manager.dart';
 
-part 'extensions/viewmanager/stage_crawler_extension.dart';
-part 'extensions/viewmanager/view_manager_extension.dart';
+part 'extensions/view_manager/stage_crawler_extension.dart';
+part 'extensions/view_manager/view_manager_extension.dart';
 
 // view processor map
 
-part 'extensions/viewprocessormap/api/i_view_processor_map.dart';
-part 'extensions/viewprocessormap/api/view_processor_map_error.dart';
+part 'extensions/view_processor_map/api/i_view_processor_map.dart';
+part 'extensions/view_processor_map/api/view_processor_map_error.dart';
 
-part 'extensions/viewprocessormap/dsl/i_view_processor_mapper.dart';
-part 'extensions/viewprocessormap/dsl/i_view_processor_mapping.dart';
-part 'extensions/viewprocessormap/dsl/i_view_processor_mapping_config.dart';
-part 'extensions/viewprocessormap/dsl/i_view_processor_unmapper.dart';
+part 'extensions/view_processor_map/dsl/i_view_processor_mapper.dart';
+part 'extensions/view_processor_map/dsl/i_view_processor_mapping.dart';
+part 'extensions/view_processor_map/dsl/i_view_processor_mapping_config.dart';
+part 'extensions/view_processor_map/dsl/i_view_processor_unmapper.dart';
 
-part 'extensions/viewprocessormap/impl/i_view_processor_factory.dart';
-part 'extensions/viewprocessormap/impl/i_view_processor_view_handler.dart';
-part 'extensions/viewprocessormap/impl/null_processor.dart';
-part 'extensions/viewprocessormap/impl/null_view_processor_unmapper.dart';
-part 'extensions/viewprocessormap/impl/view_injection_processor.dart';
-part 'extensions/viewprocessormap/impl/view_processor_factory.dart';
-part 'extensions/viewprocessormap/impl/view_processor_map.dart';
-part 'extensions/viewprocessormap/impl/view_processor_mapper.dart';
-part 'extensions/viewprocessormap/impl/view_processor_mapping.dart';
-part 'extensions/viewprocessormap/impl/view_processor_view_handler.dart';
+part 'extensions/view_processor_map/impl/i_view_processor_factory.dart';
+part 'extensions/view_processor_map/impl/i_view_processor_view_handler.dart';
+part 'extensions/view_processor_map/impl/null_processor.dart';
+part 'extensions/view_processor_map/impl/null_view_processor_unmapper.dart';
+part 'extensions/view_processor_map/impl/view_injection_processor.dart';
+part 'extensions/view_processor_map/impl/view_processor_factory.dart';
+part 'extensions/view_processor_map/impl/view_processor_map.dart';
+part 'extensions/view_processor_map/impl/view_processor_mapper.dart';
+part 'extensions/view_processor_map/impl/view_processor_mapping.dart';
+part 'extensions/view_processor_map/impl/view_processor_view_handler.dart';
 
-part 'extensions/viewprocessormap/view_processor_map_extension.dart';
+part 'extensions/view_processor_map/view_processor_map_extension.dart';
