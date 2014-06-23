@@ -4,21 +4,10 @@ class Mediator implements IMediator
 {
   //-----------------------------------
   //
-  // Public Methods
-  //
-  //-----------------------------------
-	
-	Map<StreamController, StreamSubscription> _subscriptions = new Map<StreamController, StreamSubscription>();
-	
-  //-----------------------------------
-  //
   // Public Properties
   //
   //-----------------------------------
 	
-	/*
-	 * TODO: [IMessageDispatcher] should be replaced with a streams-based equivalent
-	 */
 	@inject
 	IMessageDispatcher messageDispatcher;
 	
@@ -50,17 +39,6 @@ class Mediator implements IMediator
 
 	void postDestroy() {}
 	
-	void addStreamListener(Stream stream, Function handler) 
-	{
-		stream.listen(handler);
-	}
-
-
-	void removeListener(StreamController streamController, Function handler) 
-	{
-		
-	}
-
 	void dispatch(Symbol name, [dynamic data = null]) 
 	{
 		messageDispatcher.send(name, data);
