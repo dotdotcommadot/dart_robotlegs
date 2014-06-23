@@ -1,5 +1,5 @@
 name: robotlegs
-version: 0.0.1
+version: 0.1.0
 author: Hans Van den Keybus
 description: Robotlegs for Google Dart
 dependencies:
