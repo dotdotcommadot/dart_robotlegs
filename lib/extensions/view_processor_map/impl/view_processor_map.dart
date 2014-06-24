@@ -20,7 +20,7 @@ class ViewProcessorMap implements IViewProcessorMap, IViewHandler
   //
   //-----------------------------------
 	
-	ViewProcessorMap(IViewProcessorFactory factory, [this._handler = null])
+	ViewProcessorMap(IViewProcessorFactory factory)
 	{
 		if (_handler == null)
 			_handler = new ViewProcessorViewHandler(factory);

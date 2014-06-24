@@ -10,21 +10,9 @@ class MessageDispatcherExtension implements IExtension
 	
 	IContext _context;
 	
-	IMessageDispatcher _messageDispatcher;
+	IMessageDispatcher _messageDispatcher = new MessageDispatcher();
 	
 	//LifecycleMessageRelay _lifecycleRelay;
-	
-	//-----------------------------------
-  //
-  // Constructor
-  //
-  //-----------------------------------
-	
-	MessageDispatcherExtension([this._messageDispatcher = null])
-	{
-		if (_messageDispatcher == null)
-			_messageDispatcher = new MessageDispatcher();
-	}
 	
 	//-----------------------------------
   //
