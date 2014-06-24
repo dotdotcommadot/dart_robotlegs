@@ -57,7 +57,7 @@ class StageCrawlerExtension
 		_logger.debug("ViewManager is not installed. Checking the ContextView...");
 		ContextView contextView = _injector.getInstance(ContextView);
 		// TODO
-		if (contextView.view)
+		if (contextView.view != null)
 			_scanContainer(contextView.view);
 	}
 	
