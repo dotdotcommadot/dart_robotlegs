@@ -8,8 +8,8 @@ class ContextView
   //
   //-----------------------------------
 	
-	dynamic _view;
-	dynamic get view => _view;
+	dom.Element _view;
+	dom.Element get view => _view;
 	
   //-----------------------------------
   //
