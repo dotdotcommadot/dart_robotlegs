@@ -5,7 +5,6 @@ library robotlegs;
 //-----------------------------------
 
 import 'dart:mirrors';
-import 'dart:async';
 import 'dart:html' as dom;
 import 'package:robotlegs_di/robotlegs_di.dart';
 import "package:dotdotcommadot_messaging/dotdotcommadot_messaging.dart";
