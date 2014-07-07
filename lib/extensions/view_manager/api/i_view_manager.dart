@@ -2,7 +2,7 @@ part of robotlegs;
 
 abstract class IViewManager {
 	
-	List<dynamic> get containers;
+	List<dom.Element> get containers;
 	
 	void addContainer(dynamic container);
 

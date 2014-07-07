@@ -45,9 +45,9 @@ class StageCrawlerExtension
 	{
 		_logger.debug("ViewManager is installed. Checking for managed containers...");
 		final IViewManager viewManager = _injector.getInstance(IViewManager);
+		
 		viewManager.containers.forEach((container) {
-			// TODO
-			if (container != null)
+			if (container.parent != null && container.parent is dom.Element)
 				_scanContainer(container);
 		});
 	}
@@ -56,8 +56,8 @@ class StageCrawlerExtension
 	{
 		_logger.debug("ViewManager is not installed. Checking the ContextView...");
 		ContextView contextView = _injector.getInstance(ContextView);
-		// TODO
-		if (contextView.view != null)
+
+		if (contextView.view.parent != null && contextView.view.parent is dom.Element)
 			_scanContainer(contextView.view);
 	}
 	
