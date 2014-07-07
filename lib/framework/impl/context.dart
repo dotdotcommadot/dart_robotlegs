@@ -238,11 +238,13 @@ class Context extends MessageDispatcher implements IContext
 	{
 		_injector.map(IInjector).toValue(_injector);
 		_injector.map(IContext).toValue(this);
+		
 		_logger = _logManager.getLogger(this);
 		_pin = new Pin(this);
 		_lifecycle = new Lifecycle(this);
 		_configManager = new ConfigManager(this);
 		_extensionInstaller = new ExtensionInstaller(this);
+		
 		beforeInitializing(beforeInitializingCallback);
 		afterInitializing(afterInitializingCallback);
 	  beforeDestroying(beforeDestroyingCallback);

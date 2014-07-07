@@ -49,11 +49,13 @@ class ViewManagerExtension implements IExtension
 	
 	void _whenInitializing()
 	{
-		
+		_viewManager = _injector.getInstance(IViewManager);
 	}
 
 	void _whenDestroying()
 	{
-		
+		_viewManager.removeAllHandlers();
+		_injector.unmap(IViewManager);
+		_injector.unmap(ContainerRegistry);
 	}
 }
