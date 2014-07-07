@@ -14,7 +14,7 @@ class LifecycleTransition
 	
 	final List _callbacks = [];
 	
-	String _name;
+	Symbol _name;
 	
 	Lifecycle _lifecycle;
 	
@@ -22,11 +22,11 @@ class LifecycleTransition
 	
 	String _finalState;
 	
-	String _preTransitionEvent;
+	Symbol _preTransitionMessage;
 	
-	String _transitionEvent;
+	Symbol _transitionMessage;
 	
-	String _postTransitionEvent;
+	Symbol _postTransitionMessage;
 	
 	String _initialState;
 	
@@ -46,7 +46,7 @@ class LifecycleTransition
   //
   //-----------------------------------
 	
-	LifecycleTransition fromStates(List states)
+	LifecycleTransition fromStates(List<String> states)
 	{
 		states.forEach( (String state)
 		{
@@ -63,14 +63,14 @@ class LifecycleTransition
 	}
 	
 	//TODO
-	LifecycleTransition withEvents(String preTransitionEvent, String transitionEvent, String postTransitionEvent)
+	LifecycleTransition withMessages(Symbol preTransitionMessage, Symbol transitionMessage, Symbol postTransitionMessage)
 	{
-		_preTransitionEvent = preTransitionEvent;
-		_transitionEvent = transitionEvent;
-		_postTransitionEvent = postTransitionEvent;
+		_preTransitionMessage = preTransitionMessage;
+		_transitionMessage = transitionMessage;
+		_postTransitionMessage = postTransitionMessage;
 		
 		if (_reverse)
-			_lifecycle._addReversedEventTypes([preTransitionEvent, transitionEvent, postTransitionEvent]);
+			_lifecycle._addReversedEventTypes([preTransitionMessage, transitionMessage, postTransitionMessage]);
 		
 		return this;
 	}
@@ -130,8 +130,8 @@ class LifecycleTransition
 			return;
 		}
 		
-		_dispatch(_preTransitionEvent);
-    _dispatch(_transitionEvent);
+		_dispatch(_preTransitionMessage);
+    _dispatch(_transitionMessage);
     
     _setState(_finalState);
     
@@ -142,7 +142,7 @@ class LifecycleTransition
     	safelyCallback(callback, null, _name);
     });
     
-    _dispatch(_postTransitionEvent);
+    _dispatch(_postTransitionMessage);
 	}
 	
   //-----------------------------------
@@ -163,10 +163,10 @@ class LifecycleTransition
 			_lifecycle.setCurrentState(state);
 	}
 	
-	void _dispatch(String type)
+	void _dispatch(Symbol messageName)
 	{
-		if (type != '' && _lifecycle.hasEventListener(type))
-			_lifecycle.dispatchEvent(type);
+		if (messageName != '' && _lifecycle.hasEventListener(messageName))
+			_lifecycle.dispatchEvent(messageName);
 	}
 	
 	void _reportError(dynamic message, List callbacks)

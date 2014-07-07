@@ -1,7 +1,22 @@
 part of robotlegs;
 
-class ContainerRegistry
+class ContainerRegistry extends Object with MessagingMixin
 {
+  //-----------------------------------
+  //
+  // Public Static Properties
+  //
+  //-----------------------------------
+	
+  //-----------------------------------
+  // Messages
+  //-----------------------------------
+	
+	static const Symbol CONTAINER_ADD = const Symbol('ContainerRegistry.CONTAINER_ADD');
+	static const Symbol CONTAINER_REMOVE = const Symbol('ContainerRegistry.CONTAINER_REMOVE');
+	static const Symbol ROOT_CONTAINER_ADD = const Symbol('ContainerRegistry.ROOT_CONTAINER_ADD');
+	static const Symbol ROOT_CONTAINER_REMOVE = const Symbol('ContainerRegistry.ROOT_CONTAINER_REMOVE');
+	
   //-----------------------------------
   //
   // Public Properties
@@ -33,7 +48,7 @@ class ContainerRegistry
 	ContainerBinding addContainer(dynamic container)
 	{
 		if (_bindingsByContainer[container] == null)
-			_bindingsByContainer[container] =  _createBinding(container);
+			_bindingsByContainer[container] = _createBinding(container);
 		
 		return _bindingsByContainer[container];
 	}
@@ -77,7 +92,7 @@ class ContainerRegistry
 		final ContainerBinding binding = new ContainerBinding(container);
 		_bindings.add(binding);
 		
-		//binding.addEventListener(ContainerBindingEvent.BINDING_EMPTY, _onBindingEmpty);
+		binding.addMessageListener(ContainerBinding.BINDING_EMPTY, _onBindingEmpty);
 		
 		binding.parent = findParentBinding(container);
 		if (binding.parent == null)
@@ -102,7 +117,7 @@ class ContainerRegistry
 			}
 		});
 		
-		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.CONTAINER_ADD, binding.container));
+		sendMessage(ContainerRegistry.CONTAINER_ADD, binding.container);
 		return binding;
 	}
 	
@@ -111,7 +126,7 @@ class ContainerRegistry
 		_bindingsByContainer.remove(binding.container);
 		_bindings.remove(binding);
 		
-		//binding.removeEventListener(ContainerBindingEvent.BINDING_EMPTY, _onBindingEmpty);
+		binding.removeMessageListener(ContainerBinding.BINDING_EMPTY, _onBindingEmpty);
 		
 		if (binding.parent == null)
 		{
@@ -131,19 +146,19 @@ class ContainerRegistry
 			}
 		});
 		
-		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.CONTAINER_REMOVE, binding.container));
+		sendMessage(ContainerRegistry.CONTAINER_REMOVE, binding.container);
 	}
 
 	void _addRootBinding(dynamic binding)
 	{
 		_rootBindings.add(binding);
-		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.ROOT_CONTAINER_ADD, binding.container));
+		sendMessage(ContainerRegistry.ROOT_CONTAINER_ADD, binding.container);
 	}
 	
 	void _removeRootBinding(dynamic binding)
 	{
 		_rootBindings.remove(binding);
-		//dispatchEvent(new ContainerRegistryEvent(ContainerRegistryEvent.ROOT_CONTAINER_REMOVE, binding.container));
+		sendMessage(ContainerRegistry.ROOT_CONTAINER_REMOVE, binding.container);
 	}
 
 	void _onBindingEmpty(dynamic binding)

@@ -1,7 +1,22 @@
 part of robotlegs;
 
-class ViewManager implements IViewManager
+class ViewManager extends Object with MessagingMixin implements IViewManager
 {
+  //-----------------------------------
+  //
+  // Public Static Properties
+  //
+  //-----------------------------------
+	
+  //-----------------------------------
+  // Messages
+  //-----------------------------------
+	
+	static const Symbol CONTAINER_ADD = const Symbol('ViewManager.CONTAINER_ADD');
+	static const Symbol CONTAINER_REMOVE = const Symbol('ViewManager.CONTAINER_REMOVE');
+	static const Symbol HANDLER_ADD = const Symbol('ViewManager.HANDLER_ADD');
+	static const Symbol HANDLER_REMOVE = const Symbol('ViewManager.HANDLER_REMOVE');
+	
   //-----------------------------------
   //
   // Public Properties
@@ -27,7 +42,6 @@ class ViewManager implements IViewManager
   //
   //-----------------------------------
 	
-	
 	ViewManager(this._registry);
 	
   //-----------------------------------
@@ -48,7 +62,7 @@ class ViewManager implements IViewManager
 			_registry.addContainer(container).addHandler(handler);
 		});
 		
-		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.CONTAINER_ADD, container));
+		sendMessage(ViewManager.CONTAINER_ADD, container);
 	}
 
 	void removeContainer(dom.Element container)
@@ -64,7 +78,7 @@ class ViewManager implements IViewManager
 			binding.removeHandler(handler);
 		});
 		
-		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.CONTAINER_REMOVE, container));
+		sendMessage(ViewManager.CONTAINER_REMOVE, container);
 	}
 	
 	void addViewHandler(IViewHandler handler)
@@ -79,7 +93,7 @@ class ViewManager implements IViewManager
 			_registry.addContainer(container).addHandler(handler);
 		});
 		
-		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.HANDLER_ADD, null, handler));
+		sendMessage(ViewManager.HANDLER_ADD, {handler: handler});
 	}
 	
 	void removeViewHandler(IViewHandler handler)
@@ -94,7 +108,7 @@ class ViewManager implements IViewManager
 			_registry.getBinding(container).removeHandler(handler);
 		});
 		
-		//dispatchEvent(new ViewManagerEvent(ViewManagerEvent.HANDLER_REMOVE, null, handler));
+		sendMessage(ViewManager.HANDLER_REMOVE, {handler: handler});
 	}
 
 	void removeAllHandlers()

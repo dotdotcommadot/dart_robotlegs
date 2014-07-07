@@ -32,7 +32,7 @@ part 'framework/api/i_logger.dart';
 part 'framework/api/i_log_target.dart';
 part 'framework/api/i_matcher.dart';
 part 'framework/api/lifecycle_error.dart';
-part 'framework/api/lifecycle_event.dart';
+part 'framework/api/lifecycle_message.dart';
 part 'framework/api/lifecycle_state.dart';
 part 'framework/api/log_level.dart';
 part 'framework/api/pin_event.dart';
@@ -138,9 +138,11 @@ part 'extensions/view_manager/api/i_view_manager.dart';
 part 'extensions/view_manager/impl/container_binding.dart';
 part 'extensions/view_manager/impl/container_registry.dart';
 part 'extensions/view_manager/impl/stage_crawler.dart';
+part 'extensions/view_manager/impl/stage_observer.dart';
 part 'extensions/view_manager/impl/view_manager.dart';
 
 part 'extensions/view_manager/stage_crawler_extension.dart';
+part 'extensions/view_manager/stage_observer_extension.dart';
 part 'extensions/view_manager/view_manager_extension.dart';
 
 // view processor map

@@ -2,7 +2,6 @@ part of robotlegs;
 
 class Lifecycle implements ILifecycle
 {
-	
   //-----------------------------------
   //
   // Public Properties
@@ -100,7 +99,7 @@ class Lifecycle implements ILifecycle
 	{
 		if (initialized)
 			_reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
-		_dispatcher.addListener(new Symbol(LifecycleEvent.INITIALIZE), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.INITIALIZE, createSyncLifecycleListener(handler));
   	return this;
 	}
 
@@ -108,7 +107,7 @@ class Lifecycle implements ILifecycle
 	{
 		if (initialized)
 			_reportError(LifecycleError.LATE_HANDLER_ERROR_MESSAGE);
-		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_INITIALIZE), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.POST_INITIALIZE, createSyncLifecycleListener(handler));
   	return this;
 	}
 
@@ -120,13 +119,13 @@ class Lifecycle implements ILifecycle
 
 	ILifecycle whenSuspending(Function handler)
 	{
-		_dispatcher.addListener(new Symbol(LifecycleEvent.SUSPEND), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.SUSPEND, createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterSuspending(Function handler)
 	{
-		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_SUSPEND), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.POST_SUSPEND, createSyncLifecycleListener(handler));
  		return this;
 	}
 
@@ -138,13 +137,13 @@ class Lifecycle implements ILifecycle
 
 	ILifecycle whenResuming(Function handler)
 	{
-		_dispatcher.addListener(new Symbol(LifecycleEvent.RESUME), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.RESUME, createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterResuming(Function handler)
 	{
-		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_RESUME), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.POST_RESUME, createSyncLifecycleListener(handler));
   	return this;
 	}
 
@@ -156,13 +155,13 @@ class Lifecycle implements ILifecycle
 
 	ILifecycle whenDestroying(Function handler)
 	{
-		_dispatcher.addListener(new Symbol(LifecycleEvent.DESTROY), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.DESTROY, createSyncLifecycleListener(handler));
   	return this;
 	}
 
 	ILifecycle afterDestroying(Function handler)
 	{
-		_dispatcher.addListener(new Symbol(LifecycleEvent.POST_DESTROY), createSyncLifecycleListener(handler));
+		_dispatcher.addListener(LifecycleMessage.POST_DESTROY, createSyncLifecycleListener(handler));
   	return this;
 	}
 	
@@ -179,15 +178,15 @@ class Lifecycle implements ILifecycle
 	}*/
 	
 	//TODO
-	void dispatchEvent(String type)
+	void dispatchEvent(Symbol messageName)
 	{
-		return _dispatcher.send(new Symbol(type));
+		return _dispatcher.send(messageName);
 	}
 
 	//TODO
-	bool hasEventListener(String type)
+	bool hasEventListener(Symbol messageName)
 	{
-		return _dispatcher.hasListener(new Symbol(type));
+		return _dispatcher.hasListener(messageName);
 	}
 
 	//TODO
@@ -208,7 +207,7 @@ class Lifecycle implements ILifecycle
 			return;
 		_state = state;
 		
-		dispatchEvent(LifecycleEvent.STATE_CHANGE);
+		dispatchEvent(LifecycleMessage.STATE_CHANGE);
 	}
 	
 	void _addReversedEventTypes(List types)
@@ -220,26 +219,26 @@ class Lifecycle implements ILifecycle
 	
 	void _configureTransitions()
 	{
-		_initialize = new LifecycleTransition(LifecycleEvent.PRE_INITIALIZE, this)
+		_initialize = new LifecycleTransition(LifecycleMessage.PRE_INITIALIZE, this)
   		.fromStates([LifecycleState.UNINITIALIZED])
   		.toStates(LifecycleState.INITIALIZING, LifecycleState.ACTIVE)
-  		.withEvents(LifecycleEvent.PRE_INITIALIZE, LifecycleEvent.INITIALIZE, LifecycleEvent.POST_INITIALIZE);
+  		.withMessages(LifecycleMessage.PRE_INITIALIZE, LifecycleMessage.INITIALIZE, LifecycleMessage.POST_INITIALIZE);
 
-		_suspend = new LifecycleTransition(LifecycleEvent.PRE_SUSPEND, this)
+		_suspend = new LifecycleTransition(LifecycleMessage.PRE_SUSPEND, this)
   		.fromStates([LifecycleState.ACTIVE])
   		.toStates(LifecycleState.SUSPENDING, LifecycleState.SUSPENDED)
-  		.withEvents(LifecycleEvent.PRE_SUSPEND, LifecycleEvent.SUSPEND, LifecycleEvent.POST_SUSPEND)
+  		.withMessages(LifecycleMessage.PRE_SUSPEND, LifecycleMessage.SUSPEND, LifecycleMessage.POST_SUSPEND)
   		.inReverse();
 
-		_resume = new LifecycleTransition(LifecycleEvent.PRE_RESUME, this)
+		_resume = new LifecycleTransition(LifecycleMessage.PRE_RESUME, this)
   		.fromStates([LifecycleState.SUSPENDED])
   		.toStates(LifecycleState.RESUMING, LifecycleState.ACTIVE)
-  		.withEvents(LifecycleEvent.PRE_RESUME, LifecycleEvent.RESUME, LifecycleEvent.POST_RESUME);
+  		.withMessages(LifecycleMessage.PRE_RESUME, LifecycleMessage.RESUME, LifecycleMessage.POST_RESUME);
 
-		_destroy = new LifecycleTransition(LifecycleEvent.PRE_DESTROY, this)
+		_destroy = new LifecycleTransition(LifecycleMessage.PRE_DESTROY, this)
   		.fromStates([LifecycleState.SUSPENDED, LifecycleState.ACTIVE])
   		.toStates(LifecycleState.DESTROYING, LifecycleState.DESTROYED)
-  		.withEvents(LifecycleEvent.PRE_DESTROY, LifecycleEvent.DESTROY, LifecycleEvent.POST_DESTROY)
+  		.withMessages(LifecycleMessage.PRE_DESTROY, LifecycleMessage.DESTROY, LifecycleMessage.POST_DESTROY)
   		.inReverse();
 	}
 	

@@ -1,7 +1,19 @@
 part of robotlegs;
 
-class ContainerBinding
+class ContainerBinding extends Object with MessagingMixin
 {
+  //-----------------------------------
+  //
+  // Public Static Properties
+  //
+  //-----------------------------------
+	
+  //-----------------------------------
+  // Messages
+  //-----------------------------------
+	
+	static const Symbol BINDING_EMPTY = const Symbol('ContainerBinding.BINDING_EMPTY');
+	
   //-----------------------------------
   //
   // Public Properties
@@ -51,9 +63,8 @@ class ContainerBinding
 		{
 			_handlers.remove(handler);
 			
-			// TODO
-			/*if (_handlers.length == 0)
-				dispatchEvent(new ContainerBindingEvent(ContainerBindingEvent.BINDING_EMPTY));*/
+			if (_handlers.length == 0)
+				sendMessage(ContainerBinding.BINDING_EMPTY);
 		}
 	}
 	
@@ -67,5 +78,4 @@ class ContainerBinding
 			handler.handleView(view, type);
 		}
 	}
-	
 }
