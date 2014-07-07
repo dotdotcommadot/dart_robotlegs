@@ -8,5 +8,5 @@ abstract class ILogTarget {
   //
   //-----------------------------------
 	
-	void log(dynamic source, int level, int timestamp, String message, [List<dynamic> params = null]);
+	void log(dynamic source, int level, DateTime timestamp, String message, [List<dynamic> params = null]);
 }

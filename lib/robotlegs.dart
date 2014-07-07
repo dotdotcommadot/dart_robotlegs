@@ -83,6 +83,13 @@ part 'extensions/context_view/context_view_extension.dart';
 part 'extensions/context_view/context_view_listener_config.dart';
 part 'extensions/context_view/stage_sync_extension.dart';
 
+// enhanced logging
+
+part 'extensions/enhanced_logging/impl/log_message_parser.dart';
+part 'extensions/enhanced_logging/impl/print_log_target.dart';
+
+part 'extensions/enhanced_logging/print_logging_extension.dart';
+
 // local event map
 
 part 'extensions/local_event_map/api/i_event_map.dart';

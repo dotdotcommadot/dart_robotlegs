@@ -14,13 +14,14 @@ class MVCSBundle implements IBundle
 		
 		context.install(
 				[ContextViewExtension,
-				ViewManagerExtension,
-				ViewProcessorMapExtension,
-				StageCrawlerExtension,
-				StageSyncExtension,
-				MessageDispatcherExtension,
-				MessageCommandMapExtension,
-				MediatorMapExtension]);
+				 PrintLoggingExtension,
+				 ViewManagerExtension,
+				 ViewProcessorMapExtension,
+				 StageCrawlerExtension,
+				 StageSyncExtension,
+				 MessageDispatcherExtension,
+				 MessageCommandMapExtension,
+				 MediatorMapExtension]);
 		
 		context.configure([ContextViewListenerConfig]);
 	}

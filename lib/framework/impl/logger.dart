@@ -28,26 +28,26 @@ class Logger implements ILogger
 	
 	void debug(dynamic message, [List<dynamic> params = null])
 	{
-		_target.log(_source, 32, new DateTime.now().millisecondsSinceEpoch, message, params);
+		_target.log(_source, 32, new DateTime.now(), message, params);
 	}
 
 	void info(dynamic message, [List<dynamic> params = null])
 	{
-		_target.log(_source, 16, new DateTime.now().millisecondsSinceEpoch, message, params);
+		_target.log(_source, 16, new DateTime.now(), message, params);
 	}
 
 	void warn(dynamic message, [List<dynamic> params = null])
 	{
-		_target.log(_source, 8, new DateTime.now().millisecondsSinceEpoch, message, params);
+		_target.log(_source, 8, new DateTime.now(), message, params);
 	}
 	
 	void error(dynamic message, [List<dynamic> params = null])
 	{
-		_target.log(_source, 4, new DateTime.now().millisecondsSinceEpoch, message, params);
+		_target.log(_source, 4, new DateTime.now(), message, params);
 	}
 
 	void fatal(dynamic message, [List<dynamic> params = null])
 	{
-		_target.log(_source, 2, new DateTime.now().millisecondsSinceEpoch, message, params);
+		_target.log(_source, 2, new DateTime.now(), message, params);
 	}
 }
