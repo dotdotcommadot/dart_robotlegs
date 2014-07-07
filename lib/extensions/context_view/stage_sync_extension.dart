@@ -10,7 +10,7 @@ class StageSyncExtension implements IExtension
 	
 	IContext _context;
 	
-	dynamic _contextView;
+	dom.Element _contextView;
 	
 	ILogger _logger;
 	
