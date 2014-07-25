@@ -9,7 +9,11 @@ class LogMessageParser
 			final int numParams = params.length;
 			for (int i = 0; i < numParams; i++)
 			{
-				message = message.split("{" + i.toString() + "}").join(params[i].runtimeType.toString());
+				if (params[i] is Type)
+					message = message.split("{" + i.toString() + "}").join(params[i].toString());
+				else
+					message = message.split("{" + i.toString() + "}").join(params[i].runtimeType.toString());
+					
 			}
 		}
 		
