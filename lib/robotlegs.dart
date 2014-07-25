@@ -6,8 +6,10 @@ library robotlegs;
 
 import 'dart:mirrors';
 import 'dart:html' as dom;
+import 'dart:async';
 import 'package:robotlegs_di/robotlegs_di.dart';
 import "package:dotdotcommadot_messaging/dotdotcommadot_messaging.dart";
+import "package:polymer/polymer.dart";
 
 //-----------------------------------
 // Bundles
@@ -85,9 +87,11 @@ part 'extensions/context_view/stage_sync_extension.dart';
 
 // enhanced logging
 
+part 'extensions/enhanced_logging/impl/logger_provider.dart';
 part 'extensions/enhanced_logging/impl/log_message_parser.dart';
 part 'extensions/enhanced_logging/impl/print_log_target.dart';
 
+part 'extensions/enhanced_logging/injectable_logger_extension.dart';
 part 'extensions/enhanced_logging/print_logging_extension.dart';
 
 // local event map
