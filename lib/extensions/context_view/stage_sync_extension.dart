@@ -10,7 +10,7 @@ class StageSyncExtension implements IExtension
 	
 	IContext _context;
 	
-	dom.Element _contextView;
+	PolymerElement _contextView;
 	
 	ILogger _logger;
 	
@@ -52,7 +52,7 @@ class StageSyncExtension implements IExtension
 		else
 		{
 			_logger.debug("Context view is not yet on stage. Waiting...");
-			//_contextView.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			_watchForAddingToDom(_contextView).then((_) => _initializeContext());
 		}
 	}
 	
@@ -75,4 +75,45 @@ class StageSyncExtension implements IExtension
 	 // _contextView.removeEventListener(Event.REMOVED_FROM_STAGE, _onRemovedFromStage);
 	  _context.destroy();
 	}
+	
+	Future _watchForAddingToDom(dom.Element element) 
+  {
+		Completer completer = new Completer();
+    
+    new dom.MutationObserver((List<dom.MutationRecord> mutations, dom.MutationObserver observer) 
+    {
+    	mutations.forEach( (mutationRecord) {
+    		mutationRecord.addedNodes.forEach( (node) {
+    			if (node.nodeName == element.nodeName) 
+    			{
+      			observer.disconnect();
+            completer.complete();
+    			}
+    		});
+    	});
+    })
+    ..observe(dom.document, childList: true, subtree: true);
+    
+    return completer.future;
+  }
+
+	/*Future _watchForRemovalFromDom(dom.Element element) 
+  {
+    var completer = new Completer();
+    
+    new dom.MutationObserver((List<dom.MutationRecord> mutations, dom.MutationObserver observer) 
+    {
+    	mutations.forEach( (mutationRecord) {
+    		mutationRecord.addedNodes.forEach( (node) {
+    			if (node.nodeName == _contextView.nodeName) {
+      			observer.disconnect();
+            completer.complete();
+    			}
+    		});
+    	});
+    })
+    ..observe(element.parentNode, childList: true, subtree: true);
+    
+    return completer.future;
+  }*/
 }
