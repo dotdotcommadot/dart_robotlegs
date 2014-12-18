@@ -11,7 +11,7 @@ class Pin
 	final Map<dynamic, bool> _instances = new Map<dynamic, bool>();
 	
 	// TODO: replace with eventdesipatcher equivalent
-	dynamic _dispatcher;
+	IMessageDispatcher _dispatcher;
 	
   //-----------------------------------
   //

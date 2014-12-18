@@ -24,6 +24,7 @@ class StageCrawlerExtension
 	{
 		_injector = context.injector;
     _logger = context.getLogger(this);
+    
     context.afterInitializing(_afterInitializing);
 	}
 	
@@ -36,6 +37,7 @@ class StageCrawlerExtension
 	void _afterInitializing()
 	{
 		_containerRegistry = _injector.getInstance(ContainerRegistry);
+		
 		_injector.hasDirectMapping(IViewManager) 
 			? _scanViewManagedContainers()
 	    : _scanContextView();
@@ -46,7 +48,8 @@ class StageCrawlerExtension
 		_logger.debug("ViewManager is installed. Checking for managed containers...");
 		final IViewManager viewManager = _injector.getInstance(IViewManager);
 		
-		viewManager.containers.forEach((container) {
+		viewManager.containers.forEach((container) 
+		{
 			if (container.parent != null && container.parent is dom.Element)
 				_scanContainer(container);
 		});
@@ -65,6 +68,7 @@ class StageCrawlerExtension
 	{
 		ContainerBinding binding = _containerRegistry.getBinding(container);
 		_logger.debug("StageCrawler scanning container {0} ...", [container]);
+		
 		new StageCrawler(binding).scan(container);
 		_logger.debug("StageCrawler finished scanning {0}", [container]);
 	}

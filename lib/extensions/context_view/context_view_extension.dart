@@ -22,10 +22,12 @@ class ContextViewExtension implements IExtension
 	{
 		_injector = context.injector;
 		_logger = context.getLogger(this);
-		context.beforeInitializing(_beforeInitializing);
-		context.addConfigHandler(
-			instanceOfType(ContextView), 
-			_handleContextView);
+		
+		context
+			..beforeInitializing(_beforeInitializing)
+			..addConfigHandler(
+				instanceOfType(ContextView), 
+				_handleContextView);
 	}
 	
   //-----------------------------------
